@@ -1,3 +1,7 @@
+# PureMVC haXe Port by Marco Secchi <marco.secchi@puremvc.org>
+# PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
+# Your reuse is governed by the Creative Commons Attribution 3.0 License 
+
 -cp src
 -cp test
 -neko deploy/testRunner.n
