@@ -1,0 +1,42 @@
+# simple admin#if flash9
+-cp src
+-cp demo
+-swf-version 9
+-main SimpleAdmin
+-swf deploy/simpleAdmin/out.swf
+-swf-header 800:300:31
+--override
+
+--next
+-cp src
+-cp demo
+-main SimpleAdmin
+-js deploy/simpleAdmin/out.js
+--override
+
+# multi platform communication
+--next
+-cp src
+-cp demo
+MultiplatformComm
+-js deploy/multiplatformComm/out.js
+--override
+
+--next
+-cp src
+-cp demo
+-main org.puremvc.haxe.examples.multiplatformComm.external.ExternalView
+-swf deploy/multiplatformComm/out_fl9.swf
+-swf-version 9
+-swf-header 540:60:31
+--override
+
+--next
+-cp src
+-cp demo
+-main org.puremvc.haxe.examples.multiplatformComm.external.ExternalView
+-swf deploy/multiplatformComm/out_fl8.swf
+-swf-version 8
+-swf-header 540:60:31
+--override
+
