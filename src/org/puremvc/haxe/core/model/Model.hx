@@ -88,8 +88,11 @@ class Model implements IModel
 	public function removeProxy( proxyName: String ): IProxy
 	{
 		var proxy: IProxy = proxyMap.get( proxyName );
-		proxyMap.remove( proxyName );
-		proxy.onRemove();
+		if ( proxy != null )
+		{
+			proxyMap.remove( proxyName );
+			proxy.onRemove();			
+		}
 		return proxy;
 	}
 

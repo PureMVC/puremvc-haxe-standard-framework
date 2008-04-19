@@ -1611,6 +1611,7 @@ org.puremvc.haxe.interfaces.IView.prototype.notifyObservers = null;
 org.puremvc.haxe.interfaces.IView.prototype.registerMediator = null;
 org.puremvc.haxe.interfaces.IView.prototype.registerObserver = null;
 org.puremvc.haxe.interfaces.IView.prototype.removeMediator = null;
+org.puremvc.haxe.interfaces.IView.prototype.removeObserver = null;
 org.puremvc.haxe.interfaces.IView.prototype.retrieveMediator = null;
 org.puremvc.haxe.interfaces.IView.prototype.__class__ = org.puremvc.haxe.interfaces.IView;
 IntIter = function(min,max) { if( min === $_ ) return; {
@@ -2647,8 +2648,10 @@ org.puremvc.haxe.core.model.Model.prototype.removeProxy = function(proxyName) {
 	$s.push("org.puremvc.haxe.core.model.Model::removeProxy");
 	var $spos = $s.length;
 	var proxy = this.proxyMap.get(proxyName);
-	this.proxyMap.remove(proxyName);
-	proxy.onRemove();
+	if(proxy != null) {
+		this.proxyMap.remove(proxyName);
+		proxy.onRemove();
+	}
 	{
 		var $tmp = proxy;
 		$s.pop();
@@ -2749,26 +2752,41 @@ org.puremvc.haxe.core.view.View.prototype.registerObserver = function(notificati
 org.puremvc.haxe.core.view.View.prototype.removeMediator = function(mediatorName) {
 	$s.push("org.puremvc.haxe.core.view.View::removeMediator");
 	var $spos = $s.length;
-	{ var $it13 = this.observerMap.keys();
-	while( $it13.hasNext() ) { var notificationName = $it13.next();
-	{
-		var observers = this.observerMap.get(notificationName);
-		{ var $it14 = observers.iterator();
-		while( $it14.hasNext() ) { var observer = $it14.next();
-		{
-			if(observer.compareNotifyContext(this.retrieveMediator(mediatorName)) == true) observers.remove(observer);
-		}
-		}}
-		if(observers.isEmpty()) this.observerMap.remove(notificationName);
-	}
-	}}
 	var mediator = this.mediatorMap.get(mediatorName);
-	this.mediatorMap.remove(mediatorName);
-	if(mediator != null) mediator.onRemove();
+	if(mediator != null) {
+		var interests = mediator.listNotificationInterests();
+		{
+			var _g1 = 0, _g = interests.length;
+			while(_g1 < _g) {
+				var i = _g1++;
+				this.removeObserver(interests[i],mediator);
+			}
+		}
+		this.mediatorMap.remove(mediatorName);
+		mediator.onRemove();
+	}
 	{
 		var $tmp = mediator;
 		$s.pop();
 		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.view.View.prototype.removeObserver = function(notificationName,notifyContext) {
+	$s.push("org.puremvc.haxe.core.view.View::removeObserver");
+	var $spos = $s.length;
+	var observers = this.observerMap.get(notificationName);
+	{ var $it13 = observers.iterator();
+	while( $it13.hasNext() ) { var observer = $it13.next();
+	{
+		if(observer.compareNotifyContext(notifyContext) == true) {
+			observers.remove(observer);
+			break;
+		}
+	}
+	}}
+	if(observers.isEmpty()) {
+		this.observerMap.remove(notificationName);
 	}
 	$s.pop();
 }
@@ -3095,6 +3113,7 @@ org.puremvc.haxe.interfaces.IFacade.__name__ = ["org","puremvc","haxe","interfac
 org.puremvc.haxe.interfaces.IFacade.prototype.hasCommand = null;
 org.puremvc.haxe.interfaces.IFacade.prototype.hasMediator = null;
 org.puremvc.haxe.interfaces.IFacade.prototype.hasProxy = null;
+org.puremvc.haxe.interfaces.IFacade.prototype.notifyObservers = null;
 org.puremvc.haxe.interfaces.IFacade.prototype.registerCommand = null;
 org.puremvc.haxe.interfaces.IFacade.prototype.registerMediator = null;
 org.puremvc.haxe.interfaces.IFacade.prototype.registerProxy = null;
@@ -3181,9 +3200,9 @@ Hash.prototype.exists = function(key) {
 			return $tmp;
 		}
 	}
-	catch( $e15 ) {
+	catch( $e14 ) {
 		{
-			var e = $e15;
+			var e = $e14;
 			{
 				$e = [];
 				while($s.length >= $spos) $e.unshift($s.pop());
@@ -3285,8 +3304,8 @@ Hash.prototype.toString = function() {
 	var s = new StringBuf();
 	s.add("{");
 	var it = this.keys();
-	{ var $it16 = it;
-	while( $it16.hasNext() ) { var i = $it16.next();
+	{ var $it15 = it;
+	while( $it15.hasNext() ) { var i = $it15.next();
 	{
 		s.add(i);
 		s.add(" => ");
@@ -3882,8 +3901,8 @@ haxe.unit.TestResult.prototype.toString = function() {
 	var $spos = $s.length;
 	var buf = new StringBuf();
 	var failures = 0;
-	{ var $it17 = this.m_tests.iterator();
-	while( $it17.hasNext() ) { var test = $it17.next();
+	{ var $it16 = this.m_tests.iterator();
+	while( $it16.hasNext() ) { var test = $it16.next();
 	{
 		if(test.success == false) {
 			buf.add("* ");

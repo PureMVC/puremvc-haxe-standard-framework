@@ -26,6 +26,11 @@ interface IView
 	function registerObserver ( noteName: String, observer: IObserver ): Void;
 
 	/**
+	 * Remove a group of observers from the observer list for a given Notification name.
+	 */
+	function removeObserver( notificationName: String, notifyContext: Dynamic ): Void;
+
+	/**
 	 * Notify the [IObservers] for a particular [INotification].
 	 * 
 	 * <p>All previously attached [IObservers] for this [INotification]'s

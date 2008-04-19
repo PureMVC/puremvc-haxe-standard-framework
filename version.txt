@@ -8,10 +8,20 @@ Release Date: 04/17/08
       Author: Marco Secchi <marco.secchi@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
-1.0.1 - Removed demos. Added compiled unit tests bin for all supported platform and
-        instructions on how to run them. A couple of bugfixes on tests to meke them cross-platform.
+1.0.2 Alignment to pureMVC 2.0.3 (AS3).
+      Added notifyObservers to IFacade, where it is required
+      if you are sending custom Notifications. No unit tests required.
+      Refactored View.removeMediator method, moving the logic for removing
+	  an observer into a removeObserver method (also on IView), which is now 
+	  called by the Controller.removeCommand method as well as the
+	  View.removeMediator method.
+      The Model.removeProxy method only attempts to remove the Proxy 
+	  if it is registered.
 
-1.0 - First official release on PureMVC.org. Framework source, Demos and Docs 
+1.0.1 Removed demos. Added compiled unit tests bin for all supported platform and
+      instructions on how to run them. A couple of bugfixes on tests to meke them cross-platform.
+
+1.0   First official release on PureMVC.org. Framework source, Demos and Docs 
       are all in the same project with build files for each. These need to 
       be refactored into separate projects and with directions for building 
       when the framework source referenced from an installed location

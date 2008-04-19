@@ -89,7 +89,35 @@ class View implements IView
 				observer.notifyObserver( notification );
 		}
 	}
-						
+
+	/**
+ 	* Remove the observer for a given notifyContext from an observer list for a given Notification name.
+ 	*/
+	public function removeObserver( notificationName: String, notifyContext: Dynamic ): Void
+	{
+		// the observer list for the notification under inspection
+		var observers: List<IObserver> = observerMap.get( notificationName );
+
+		// find the observer for the notifyContext
+		for ( observer in observers.iterator() ) 
+		{
+			if ( observer.compareNotifyContext( notifyContext ) == true )
+			{
+				// there can only be one Observer for a given notifyContext 
+				// in any given Observer list, so remove it and break
+				observers.remove( observer );
+				break;
+			}
+		}
+
+		// Also, when a Notification's Observer list length falls to 
+		// zero, delete the notification key from the observer map
+		if ( observers.isEmpty() )
+		{
+			observerMap.remove( notificationName );		
+		}
+	}
+
 	/**
 	 * Register an [IMediator] instance with the [View].
 	 * 
@@ -131,37 +159,31 @@ class View implements IView
 	}
 
 	/**
-	 * Remove an [IMediator] from the [View].
-	 */
+ 	* Remove an [IMediator] from the [View].
+ 	*/
 	public function removeMediator( mediatorName: String ): IMediator
 	{
-		// Go through the observer list for each notification 
-		// in the observer map and remove all Observers with a 
-		// reference to the Mediator being removed.
-		for ( notificationName in observerMap.keys() )
+		// Retrieve the named mediator
+		var mediator:IMediator = mediatorMap.get( mediatorName );
+	
+		if ( mediator != null ) 
 		{
-			// the observer list for the notification under inspection
-			var observers: List<IObserver> = observerMap.get( notificationName );
-
-			// Check observers to be removed 
-			for ( observer in observers )
+			// for every notification this mediator is interested in...
+			var interests: Array<String> = mediator.listNotificationInterests();
+			for ( i in 0...interests.length ) 
 			{
-				if ( observer.compareNotifyContext( retrieveMediator( mediatorName ) ) == true )
-					observers.remove( observer );
-			}
+				// remove the observer linking the mediator 
+				// to the notification interest
+				removeObserver( interests[ i ], mediator );
+			}	
+		
+			// remove the mediator from the map		
+			mediatorMap.remove( mediatorName );
 
-			// Also, when an notification's observer list length falls to 
-			// zero, delete the notification key from the observer map
-			if ( observers.isEmpty() )
-				observerMap.remove( notificationName );
-		}			
-		// Remove the to the Mediator from the mediator map
-		var mediator: IMediator = mediatorMap.get( mediatorName );
-		mediatorMap.remove( mediatorName );
-		
-		if ( mediator != null )
+			// alert the mediator that it has been removed
 			mediator.onRemove();
-		
+		}
+	
 		return mediator;
 	}
 

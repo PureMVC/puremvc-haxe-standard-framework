@@ -77,4 +77,17 @@ interface IFacade
 	 * Create and send an [INotification].
 	 */
 	function sendNotification( notificationName: String, ?body: Dynamic, ?type: String ): Void;
+
+	/**
+	 * Notify the [IObservers] for a particular [INotification].
+	 * 
+	 * <p>All previously attached [IObservers] for this [INotification]'s
+	 * list are notified and are passed a reference to the [INotification] in 
+	 * the order in which they were registered.</p>
+	 * 
+	 * <p>NOTE: Use this method only if you are sending custom Notifications. Otherwise
+	 * use the sendNotification method which does not require you to create the
+	 * Notification instance.</p> 
+	 */
+	function notifyObservers( note: INotification ): Void;
 }
