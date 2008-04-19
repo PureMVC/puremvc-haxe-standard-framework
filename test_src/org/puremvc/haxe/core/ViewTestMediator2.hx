@@ -11,12 +11,12 @@ import org.puremvc.haxe.patterns.mediator.Mediator;
 /**
  * A Mediator class used by ViewTest.
  */
-class ViewTestMediator3<T> extends Mediator
+class ViewTestMediator2<T> extends Mediator
 {
-	/**
-	 * The Mediator name
-	 */
-	public static var NAME: String = 'ViewTestMediator3';
+/**
+ * The Mediator name
+ */
+public static var NAME: String = 'ViewTestMediator2';
 				
 	/**
 	 * Constructor
@@ -30,12 +30,12 @@ class ViewTestMediator3<T> extends Mediator
 	{
 		// be sure that the mediator has some Observers created
 		// in order to test removeMediator
-		return [ ViewTest.NOTE3 ];
+		return [ ViewTest.NOTE1,  ViewTest.NOTE2 ];
 	}
 
 	override public function handleNotification( notification: INotification ): Void
 	{
-		cast( getViewTest(), ViewTest ).lastNotification = notification.getName();
+		cast( getViewTest() ).lastNotification = notification.getName();
 	}
 		
 	/**
@@ -43,11 +43,12 @@ class ViewTestMediator3<T> extends Mediator
 	 */
 	override public function getMediatorName(): String
 	{
-		return ViewTestMediator3.NAME;
+		return ViewTestMediator2.NAME;
 	}
 		
 	public function getViewTest(): T
 	{
 		return viewComponent;
 	}
+				
 }

@@ -3,8 +3,58 @@
 # Your reuse is governed by the Creative Commons Attribution 3.0 License 
 
 -cp src
--cp test
--neko deploy/testRunner.n
+-cp test_src
+-neko test_bin/testRunner.n
 -main PureMVCTestRunner
 -debug
 --override
+
+--next
+-cp src
+-cp test_src
+-js test_bin/testRunner.js
+-main PureMVCTestRunner
+-debug
+--override
+
+--next
+-cp src
+-cp test_src
+-swf test_bin/testRunnerFl9.swf
+-swf-version 9
+-swf-header 800:200:31
+-main PureMVCTestRunner
+-debug
+--override
+
+--next
+-cp src
+-cp test_src
+-swf test_bin/testRunnerFl8.swf
+-swf-version 8
+-swf-header 800:200:31
+-main PureMVCTestRunner
+-debug
+--override
+
+--next
+-cp src
+-cp test_src
+-swf test_bin/testRunnerFl7.swf
+-swf-version 7
+-swf-header 800:200:31
+-main PureMVCTestRunner
+-debug
+--override
+
+--next
+-cp src
+-cp test_src
+-swf test_bin/testRunnerFl6.swf
+-swf-header 800:200:31
+-swf-version 6
+-main PureMVCTestRunner
+-debug
+--override
+
+

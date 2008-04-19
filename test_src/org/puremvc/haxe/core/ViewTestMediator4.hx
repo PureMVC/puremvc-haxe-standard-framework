@@ -33,12 +33,12 @@ class ViewTestMediator4<T> extends Mediator
 				
 	override public function onRegister(): Void
 	{
-		cast( getViewTest(), ViewTest ).onRegisterCalled = true;
+		cast( getViewTest() ).onRegisterCalled = true;
 	}
 			
 	override public function onRemove(): Void
 	{
-		cast( getViewTest(), ViewTest ).onRemoveCalled = true;
+		cast( getViewTest() ).onRemoveCalled = true;
 	}				
 			
 }

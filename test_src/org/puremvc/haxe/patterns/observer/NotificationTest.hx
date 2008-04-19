@@ -60,7 +60,14 @@ class NotificationTest extends haxe.unit.TestCase
 	{
 		// Create a new Notification and use accessors to set the note name 
 		var note: INotification = new Notification( 'TestNote', [ 1, 3, 5 ], 'TestType' );
+
+		#if neko
 		var ts: String = "Notification Name: TestNote\nBody:[1, 3, 5]\nType:TestType";
+		#else flash
+		var ts: String = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
+		#else js
+		var ts: String = "Notification Name: TestNote\nBody:1,3,5\nType:TestType";
+		#end
 		
 		// test assertions
 		assertEquals( note.toString(), ts );
