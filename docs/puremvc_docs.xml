@@ -10,6 +10,16 @@
 	 * Register an [IObserver] to be notified of [INotifications] with a given name.
 	 </haxe_doc>
 		</registerObserver>
+		<removeObserver public="1">
+			<f a="notificationName:notifyContext">
+				<c path="String"/>
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Remove a group of observers from the observer list for a given Notification name.
+	 </haxe_doc>
+		</removeObserver>
 		<notifyObservers public="1">
 			<f a="note">
 				<c path="org.puremvc.haxe.interfaces.INotification"/>
@@ -556,7 +566,17 @@
 	 * the order in which they were registered.</p>
 	 ]]></haxe_doc>
 		</notifyObservers>
-		<registerMediator public="1" line="105">
+		<removeObserver public="1" line="96">
+			<f a="notificationName:notifyContext">
+				<c path="String"/>
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+ 	* Remove the observer for a given notifyContext from an observer list for a given Notification name.
+ 	</haxe_doc>
+		</removeObserver>
+		<registerMediator public="1" line="133">
 			<f a="mediator">
 				<c path="org.puremvc.haxe.interfaces.IMediator"/>
 				<e path="Void"/>
@@ -574,7 +594,7 @@
 	 * [IMediator] is interested in.</p>
 	 ]]></haxe_doc>
 		</registerMediator>
-		<retrieveMediator public="1" line="128">
+		<retrieveMediator public="1" line="156">
 			<f a="mediatorName">
 				<c path="String"/>
 				<c path="org.puremvc.haxe.interfaces.IMediator"/>
@@ -583,16 +603,16 @@
 	 * Retrieve an [IMediator] from the [View].
 	 </haxe_doc>
 		</retrieveMediator>
-		<removeMediator public="1" line="136">
+		<removeMediator public="1" line="164">
 			<f a="mediatorName">
 				<c path="String"/>
 				<c path="org.puremvc.haxe.interfaces.IMediator"/>
 			</f>
 			<haxe_doc>
-	 * Remove an [IMediator] from the [View].
-	 </haxe_doc>
+ 	* Remove an [IMediator] from the [View].
+ 	</haxe_doc>
 		</removeMediator>
-		<hasMediator public="1" line="171">
+		<hasMediator public="1" line="193">
 			<f a="mediatorName">
 				<c path="String"/>
 				<e path="Bool"/>
@@ -906,6 +926,23 @@
 	 * Create and send an [INotification].
 	 </haxe_doc>
 		</sendNotification>
+		<notifyObservers public="1">
+			<f a="note">
+				<c path="org.puremvc.haxe.interfaces.INotification"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	 * Notify the [IObservers] for a particular [INotification].
+	 * 
+	 * <p>All previously attached [IObservers] for this [INotification]'s
+	 * list are notified and are passed a reference to the [INotification] in 
+	 * the order in which they were registered.</p>
+	 * 
+	 * <p>NOTE: Use this method only if you are sending custom Notifications. Otherwise
+	 * use the sendNotification method which does not require you to create the
+	 * Notification instance.</p> 
+	 ]]></haxe_doc>
+		</notifyObservers>
 		<haxe_doc><![CDATA[
  * The interface definition for a PureMVC Facade.
  *
@@ -1421,8 +1458,8 @@
 				<e path="Void"/>
 			</f>
 			<haxe_doc>
- 	* Execute the [ICommand]'s logic to handle a given [INotification].
- 	</haxe_doc>
+ 	 * Execute the [ICommand]'s logic to handle a given [INotification].
+ 	 </haxe_doc>
 		</execute>
 		<haxe_doc>
  * The interface definition for a PureMVC Command.

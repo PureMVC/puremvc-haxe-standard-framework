@@ -125,7 +125,13 @@ dt {
 	  Check if a <code>Mediator</code> is registered or not
 </dd><dt><span class="kwd">function </span>hasProxy(proxyName : <a href="../../../../String.html" class="type">String</a>) : <a href="../../../../Bool.html" class="type">Bool</a></dt><dd>
 	  Check if a <code>Proxy</code> is registered
-</dd><dt><span class="kwd">function </span>registerCommand(noteName : <a href="../../../../String.html" class="type">String</a>, commandClassRef : <a href="../../../../Class.html" class="type">Class</a>&lt;<a href="../../../../org/puremvc/haxe/interfaces/ICommand.html" class="type">ICommand</a>&gt;) : <a href="../../../../Void.html" class="type">Void</a></dt><dd>
+</dd><dt><span class="kwd">function </span>notifyObservers(note : <a href="../../../../org/puremvc/haxe/interfaces/INotification.html" class="type">INotification</a>) : <a href="../../../../Void.html" class="type">Void</a></dt><dd><p>Notify the <code>IObservers</code> for a particular <code>INotification</code>.</p>
+<p><p>All previously attached <code>IObservers</code> for this <code>INotification</code>'s
+	  list are notified and are passed a reference to the <code>INotification</code> in
+	  the order in which they were registered.</p></p>
+<p><p>NOTE: Use this method only if you are sending custom Notifications. Otherwise
+	  use the sendNotification method which does not require you to create the
+	  Notification instance.</p></p></dd><dt><span class="kwd">function </span>registerCommand(noteName : <a href="../../../../String.html" class="type">String</a>, commandClassRef : <a href="../../../../Class.html" class="type">Class</a>&lt;<a href="../../../../org/puremvc/haxe/interfaces/ICommand.html" class="type">ICommand</a>&gt;) : <a href="../../../../Void.html" class="type">Void</a></dt><dd>
 	  Register an <code>ICommand</code> with the <code>Controller</code>.
 </dd><dt><span class="kwd">function </span>registerMediator(mediator : <a href="../../../../org/puremvc/haxe/interfaces/IMediator.html" class="type">IMediator</a>) : <a href="../../../../Void.html" class="type">Void</a></dt><dd>
 	  Register an <code>IMediator</code> instance with the <code>View</code>.

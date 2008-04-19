@@ -142,7 +142,9 @@ dt {
 	  <code>IMediator</code> is interested in.</p></p></dd><dt><span class="kwd">function </span>registerObserver(notificationName : <a href="../../../../../String.html" class="type">String</a>, observer : <a href="../../../../../org/puremvc/haxe/interfaces/IObserver.html" class="type">org.puremvc.haxe.interfaces.IObserver</a>) : <a href="../../../../../Void.html" class="type">Void</a></dt><dd>
 	  Register an <code>IObserver</code> to be notified of <code>INotifications</code> with a given name.
 </dd><dt><span class="kwd">function </span>removeMediator(mediatorName : <a href="../../../../../String.html" class="type">String</a>) : <a href="../../../../../org/puremvc/haxe/interfaces/IMediator.html" class="type">org.puremvc.haxe.interfaces.IMediator</a></dt><dd>
-	  Remove an <code>IMediator</code> from the <code>View</code>.
+ 	 Remove an <code>IMediator</code> from the <code>View</code>.
+</dd><dt><span class="kwd">function </span>removeObserver(notificationName : <a href="../../../../../String.html" class="type">String</a>, notifyContext : <a href="../../../../../Dynamic.html" class="type">Dynamic</a>) : <a href="../../../../../Void.html" class="type">Void</a></dt><dd>
+ 	 Remove the observer for a given notifyContext from an observer list for a given Notification name.
 </dd><dt><span class="kwd">function </span>retrieveMediator(mediatorName : <a href="../../../../../String.html" class="type">String</a>) : <a href="../../../../../org/puremvc/haxe/interfaces/IMediator.html" class="type">org.puremvc.haxe.interfaces.IMediator</a></dt><dd>
 	  Retrieve an <code>IMediator</code> from the <code>View</code>.
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>getInstance() : <a href="../../../../../org/puremvc/haxe/interfaces/IView.html" class="type">org.puremvc.haxe.interfaces.IView</a></dt><dd>
