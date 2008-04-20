@@ -438,7 +438,10 @@ org.puremvc.haxe.core.Controller.prototype.registerCommand = function(notificati
 	this.commandMap.set(notificationName,commandClassRef);
 }
 org.puremvc.haxe.core.Controller.prototype.removeCommand = function(notificationName) {
-	this.commandMap.remove(notificationName);
+	if(this.hasCommand(notificationName)) {
+		this.view.removeObserver(notificationName,this);
+		this.commandMap.remove(notificationName);
+	}
 }
 org.puremvc.haxe.core.Controller.prototype.view = null;
 org.puremvc.haxe.core.Controller.prototype.__class__ = org.puremvc.haxe.core.Controller;

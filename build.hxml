@@ -41,11 +41,13 @@ org.puremvc.haxe.ImportAll
 org.puremvc.haxe.ImportAll
 
 # build extern classes from flash9 binaries
+# uncomment the following if you need to generate extern classes
 #--next
 #-cp src
 #--gen-hx-classes bin/puremvc_fl9.swf
 
 # build docs
+# use the following command-line action to generate docs:
 # haxedoc puremvc_docs.xml -f Array -f Bool -f org -f Class -f Dynamic -f Enum -f float -f Hash -f Int -f Iter -f List -f Math -f Null -f Reflect -f Std -f String -f Type -f Void -f Value
 --next
 -cp src

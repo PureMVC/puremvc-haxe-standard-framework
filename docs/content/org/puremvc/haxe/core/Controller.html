@@ -18,7 +18,7 @@
 body {
 	text-align: center;
 	font-family: Trebuchet MS, sans-serif;
-	background-color : #7D7E86;
+	background-color : #ffffff;
 }
 
 .document {
@@ -27,21 +27,22 @@ body {
 	margin : 10px auto 5px auto;
 	border : solid 2px #CFD0D4;
 	text-align : justify;
-	background-color: #F6FAFD;
+	background-color: #ffffff;
+	color: #292929;
 }
 
 .title {
-	font-size: 35;
+	font-size: 28px;
 	font-weight: bold;
 	text-align: center;
-	background-color : #FFD473;
+	background-color : #0067b0;
 	color : white;
 }
 
 ul.entry {
 	list-style-type: circle;
 	font-weight : bold;
-	margin-left : 30px;
+	margin-left : 20px;
 }
 
 .package_content {
@@ -49,18 +50,18 @@ ul.entry {
 }
 
 a {
-	color : #FFBB00;
+	color : #0067b0;
 	font-weight : bold;
 	text-decoration : none;
 }
 
 a:hover {
-	color : #FFAE00;
+	color : #0067b0;
 	text-decoration : underline;
 }
 
 a.package {
-	color : black;
+	color : #292929;
 }
 
 .index {
@@ -68,21 +69,20 @@ a.package {
 }
 
 .kwd {
-	color : #00A;
+	color: #008cd7;
 }
 
 .classname {
-	font-size : 30;
+	font-size : 25px;
 	font-weight : bold;
-	margin-left : 10px;
-	margin-bottom : 20px;
+	margin : 20px 10px;
 }
 
 .classdoc {
 	border : 1px dashed #666;
 	margin-left : 20px;
 	margin-right : 20px;
-	padding : 5 5 5 5;
+	padding : 5px 5px 5px 5px;
 }
 
 .importmod, .extends, .implements, .typedef, .platforms {
@@ -91,7 +91,7 @@ a.package {
 }
 
 dd {
-	margin : 0 20 20 40;
+	margin : 0px 20px 20px 40px;
 	font-size : 12pt;
 	color : #444;
 }
@@ -111,9 +111,9 @@ dt {
 <body>
 
 <div class="document">
-<div class="title">haXe API Documentation</div>
+<div class="title">PureMVC Framework for haXe: API Documentation</div>
 
-<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../../../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>org.puremvc.haxe.core.controller.Controller</div><div class="implements">implements <a href="../../../../../org/puremvc/haxe/interfaces/IController.html" class="type">org.puremvc.haxe.interfaces.IController</a></div><div class="classdoc"><p>A Singleton <code>IController</code> implementation.</p>
+<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>org.puremvc.haxe.core.Controller</div><div class="implements">implements <a href="../../../../org/puremvc/haxe/interfaces/IController.html" class="type">org.puremvc.haxe.interfaces.IController</a></div><div class="classdoc"><p>A Singleton <code>IController</code> implementation.</p>
 <p><p>In PureMVC, the <code>Controller</code> class follows the
   'Command and Controller' strategy, and assumes these responsibilities:</p>
   <ul>
@@ -126,21 +126,21 @@ dt {
   </ul></p>
 <p><p>Your application must register <code>ICommands</code> with the Controller.
   The simplest way is to subclass <code>Facade</code>,
-  and use its <code>initializeController</code> method to add your registrations.</p></p></div><dl><dt><span class="kwd">function </span>executeCommand(note : <a href="../../../../../org/puremvc/haxe/interfaces/INotification.html" class="type">org.puremvc.haxe.interfaces.INotification</a>) : <a href="../../../../../Void.html" class="type">Void</a></dt><dd>
+  and use its <code>initializeController</code> method to add your registrations.</p></p></div><dl><dt><span class="kwd">function </span>executeCommand(note : <a href="../../../../org/puremvc/haxe/interfaces/INotification.html" class="type">org.puremvc.haxe.interfaces.INotification</a>) : <a href="../../../../Void.html" class="type">Void</a></dt><dd>
 	  If an <code>ICommand</code> has previously been registered
 	  to handle a the given <code>INotification</code>, then it is executed.
-</dd><dt><span class="kwd">function </span>hasCommand(notificationName : <a href="../../../../../String.html" class="type">String</a>) : <a href="../../../../../Bool.html" class="type">Bool</a></dt><dd>
+</dd><dt><span class="kwd">function </span>hasCommand(notificationName : <a href="../../../../String.html" class="type">String</a>) : <a href="../../../../Bool.html" class="type">Bool</a></dt><dd>
 	  Check if a Command is registered for a given Notification
-</dd><dt><span class="kwd">function </span>registerCommand(notificationName : <a href="../../../../../String.html" class="type">String</a>, commandClassRef : <a href="../../../../../Class.html" class="type">Class</a>&lt;<a href="../../../../../org/puremvc/haxe/interfaces/ICommand.html" class="type">org.puremvc.haxe.interfaces.ICommand</a>&gt;) : <a href="../../../../../Void.html" class="type">Void</a></dt><dd><p>Register a particular <code>ICommand</code> class as the handler for a particular <code>INotification</code>.</p>
+</dd><dt><span class="kwd">function </span>registerCommand(notificationName : <a href="../../../../String.html" class="type">String</a>, commandClassRef : <a href="../../../../Class.html" class="type">Class</a>&lt;<a href="../../../../org/puremvc/haxe/interfaces/ICommand.html" class="type">org.puremvc.haxe.interfaces.ICommand</a>&gt;) : <a href="../../../../Void.html" class="type">Void</a></dt><dd><p>Register a particular <code>ICommand</code> class as the handler for a particular <code>INotification</code>.</p>
 <p><p>If an <code>ICommand</code> has already been registered to
 	  handle <code>INotification</code>s with this name, it is no longer
 	  used, the new <code>ICommand</code> is used instead.</p></p>
 <p><p>The Observer for the new ICommand is only created if this the
-	  first time an ICommand has been regisered for this Notification name.</p></p></dd><dt><span class="kwd">function </span>removeCommand(notificationName : <a href="../../../../../String.html" class="type">String</a>) : <a href="../../../../../Void.html" class="type">Void</a></dt><dd>
+	  first time an ICommand has been regisered for this Notification name.</p></p></dd><dt><span class="kwd">function </span>removeCommand(notificationName : <a href="../../../../String.html" class="type">String</a>) : <a href="../../../../Void.html" class="type">Void</a></dt><dd>
 	  Remove a previously registered <code>ICommand</code> to <code>INotification</code> mapping.
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getInstance() : <a href="../../../../../org/puremvc/haxe/interfaces/IController.html" class="type">org.puremvc.haxe.interfaces.IController</a></dt><dd>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getInstance() : <a href="../../../../org/puremvc/haxe/interfaces/IController.html" class="type">org.puremvc.haxe.interfaces.IController</a></dt><dd>
 	  <code>Controller</code> Singleton Factory method.
-</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../../../../index.html" class="index">Index</a>
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../../../index.html" class="index">Index</a>
 
 </div>
 
