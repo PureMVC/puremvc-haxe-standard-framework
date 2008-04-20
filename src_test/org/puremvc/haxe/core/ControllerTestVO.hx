@@ -16,6 +16,7 @@ class ControllerTestVO
 	public function new( input: Float )
 	{
 		this.input = input;
+		this.result = 0;
 	}
 
 	public var input: Float;

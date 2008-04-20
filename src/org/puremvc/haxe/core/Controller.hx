@@ -113,7 +113,14 @@ class Controller implements IController
 	 */
 	public function removeCommand( notificationName: String ): Void
 	{
-		commandMap.remove( notificationName );
+		// if the Command is registered...
+		if ( hasCommand( notificationName ) )
+		{
+			// remove the observer
+			view.removeObserver( notificationName, this );
+
+			commandMap.remove( notificationName );
+		}
 	}
 	
 	// Local reference to View 

@@ -757,7 +757,10 @@ org.puremvc.haxe.core.Controller.prototype.registerCommand = function(notificati
 org.puremvc.haxe.core.Controller.prototype.removeCommand = function(notificationName) {
 	$s.push("org.puremvc.haxe.core.Controller::removeCommand");
 	var $spos = $s.length;
-	this.commandMap.remove(notificationName);
+	if(this.hasCommand(notificationName)) {
+		this.view.removeObserver(notificationName,this);
+		this.commandMap.remove(notificationName);
+	}
 	$s.pop();
 }
 org.puremvc.haxe.core.Controller.prototype.view = null;
@@ -1586,8 +1589,8 @@ org.puremvc.haxe.core.ControllerTest.prototype.testGetInstance = function() {
 	$s.push("org.puremvc.haxe.core.ControllerTest::testGetInstance");
 	var $spos = $s.length;
 	var controller = org.puremvc.haxe.core.Controller.getInstance();
-	this.assertTrue(controller != null,{ fileName : "ControllerTest.hx", lineNumber : 26, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testGetInstance"});
-	this.assertTrue(Std["is"](controller,org.puremvc.haxe.interfaces.IController),{ fileName : "ControllerTest.hx", lineNumber : 27, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testGetInstance"});
+	this.assertTrue(controller != null,{ fileName : "ControllerTest.hx", lineNumber : 27, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testGetInstance"});
+	this.assertTrue(Std["is"](controller,org.puremvc.haxe.interfaces.IController),{ fileName : "ControllerTest.hx", lineNumber : 28, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testGetInstance"});
 	$s.pop();
 }
 org.puremvc.haxe.core.ControllerTest.prototype.testHasCommand = function() {
@@ -1595,9 +1598,9 @@ org.puremvc.haxe.core.ControllerTest.prototype.testHasCommand = function() {
 	var $spos = $s.length;
 	var controller = org.puremvc.haxe.core.Controller.getInstance();
 	controller.registerCommand("hasCommandTest",org.puremvc.haxe.core.ControllerTestCommand);
-	this.assertTrue(controller.hasCommand("hasCommandTest"),{ fileName : "ControllerTest.hx", lineNumber : 117, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testHasCommand"});
+	this.assertTrue(controller.hasCommand("hasCommandTest"),{ fileName : "ControllerTest.hx", lineNumber : 118, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testHasCommand"});
 	controller.removeCommand("hasCommandTest");
-	this.assertFalse(controller.hasCommand("hasCommandTest"),{ fileName : "ControllerTest.hx", lineNumber : 123, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testHasCommand"});
+	this.assertFalse(controller.hasCommand("hasCommandTest"),{ fileName : "ControllerTest.hx", lineNumber : 124, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testHasCommand"});
 	$s.pop();
 }
 org.puremvc.haxe.core.ControllerTest.prototype.testRegisterAndExecuteCommand = function() {
@@ -1608,7 +1611,7 @@ org.puremvc.haxe.core.ControllerTest.prototype.testRegisterAndExecuteCommand = f
 	var vo = new org.puremvc.haxe.core.ControllerTestVO(12.0);
 	var note = new org.puremvc.haxe.patterns.observer.Notification("ControllerTest",vo);
 	controller.executeCommand(note);
-	this.assertEquals(vo.result,24.0,{ fileName : "ControllerTest.hx", lineNumber : 62, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testRegisterAndExecuteCommand"});
+	this.assertEquals(vo.result,24.0,{ fileName : "ControllerTest.hx", lineNumber : 63, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testRegisterAndExecuteCommand"});
 	$s.pop();
 }
 org.puremvc.haxe.core.ControllerTest.prototype.testRegisterAndRemoveCommand = function() {
@@ -1619,11 +1622,27 @@ org.puremvc.haxe.core.ControllerTest.prototype.testRegisterAndRemoveCommand = fu
 	var vo = new org.puremvc.haxe.core.ControllerTestVO(12);
 	var note = new org.puremvc.haxe.patterns.observer.Notification("ControllerRemoveTest",vo);
 	controller.executeCommand(note);
-	this.assertEquals(vo.result,24.0,{ fileName : "ControllerTest.hx", lineNumber : 89, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testRegisterAndRemoveCommand"});
+	this.assertEquals(vo.result,24.0,{ fileName : "ControllerTest.hx", lineNumber : 90, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testRegisterAndRemoveCommand"});
 	vo.result = 0;
 	controller.removeCommand("ControllerRemoveTest");
 	controller.executeCommand(note);
-	this.assertEquals(vo.result,0,{ fileName : "ControllerTest.hx", lineNumber : 103, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testRegisterAndRemoveCommand"});
+	this.assertEquals(vo.result,0,{ fileName : "ControllerTest.hx", lineNumber : 104, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testRegisterAndRemoveCommand"});
+	$s.pop();
+}
+org.puremvc.haxe.core.ControllerTest.prototype.testReregisterAndExecuteCommand = function() {
+	$s.push("org.puremvc.haxe.core.ControllerTest::testReregisterAndExecuteCommand");
+	var $spos = $s.length;
+	var controller = org.puremvc.haxe.core.Controller.getInstance();
+	controller.registerCommand("ControllerTest2",org.puremvc.haxe.core.ControllerTestCommand2);
+	controller.removeCommand("ControllerTest2");
+	controller.registerCommand("ControllerTest2",org.puremvc.haxe.core.ControllerTestCommand2);
+	var vo = new org.puremvc.haxe.core.ControllerTestVO(12);
+	var note = new org.puremvc.haxe.patterns.observer.Notification("ControllerTest2",vo);
+	var view = org.puremvc.haxe.core.View.getInstance();
+	view.notifyObservers(note);
+	this.assertEquals(vo.result,24.0,{ fileName : "ControllerTest.hx", lineNumber : 164, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testReregisterAndExecuteCommand"});
+	view.notifyObservers(note);
+	this.assertEquals(vo.result,48.0,{ fileName : "ControllerTest.hx", lineNumber : 170, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testReregisterAndExecuteCommand"});
 	$s.pop();
 }
 org.puremvc.haxe.core.ControllerTest.prototype.__class__ = org.puremvc.haxe.core.ControllerTest;
@@ -2290,6 +2309,7 @@ org.puremvc.haxe.core.ControllerTestVO = function(input) { if( input === $_ ) re
 	$s.push("org.puremvc.haxe.core.ControllerTestVO::new");
 	var $spos = $s.length;
 	this.input = input;
+	this.result = 0;
 	$s.pop();
 }}
 org.puremvc.haxe.core.ControllerTestVO.__name__ = ["org","puremvc","haxe","core","ControllerTestVO"];
@@ -3567,6 +3587,23 @@ org.puremvc.haxe.patterns.observer.ObserverTest.prototype.testObserverConstructo
 	$s.pop();
 }
 org.puremvc.haxe.patterns.observer.ObserverTest.prototype.__class__ = org.puremvc.haxe.patterns.observer.ObserverTest;
+org.puremvc.haxe.core.ControllerTestCommand2 = function(p) { if( p === $_ ) return; {
+	$s.push("org.puremvc.haxe.core.ControllerTestCommand2::new");
+	var $spos = $s.length;
+	org.puremvc.haxe.patterns.command.SimpleCommand.apply(this,[]);
+	$s.pop();
+}}
+org.puremvc.haxe.core.ControllerTestCommand2.__name__ = ["org","puremvc","haxe","core","ControllerTestCommand2"];
+org.puremvc.haxe.core.ControllerTestCommand2.__super__ = org.puremvc.haxe.patterns.command.SimpleCommand;
+for(var k in org.puremvc.haxe.patterns.command.SimpleCommand.prototype ) org.puremvc.haxe.core.ControllerTestCommand2.prototype[k] = org.puremvc.haxe.patterns.command.SimpleCommand.prototype[k];
+org.puremvc.haxe.core.ControllerTestCommand2.prototype.execute = function(note) {
+	$s.push("org.puremvc.haxe.core.ControllerTestCommand2::execute");
+	var $spos = $s.length;
+	var vo = note.getBody();
+	vo.result = vo.result + (2 * vo.input);
+	$s.pop();
+}
+org.puremvc.haxe.core.ControllerTestCommand2.prototype.__class__ = org.puremvc.haxe.core.ControllerTestCommand2;
 org.puremvc.haxe.core.ModelTest = function(p) { if( p === $_ ) return; {
 	$s.push("org.puremvc.haxe.core.ModelTest::new");
 	var $spos = $s.length;
