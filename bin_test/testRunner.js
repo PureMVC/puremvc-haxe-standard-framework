@@ -692,6 +692,77 @@ org.puremvc.haxe.patterns.facade.FacadeTest.prototype.testRegisterRetrieveAndRem
 	$s.pop();
 }
 org.puremvc.haxe.patterns.facade.FacadeTest.prototype.__class__ = org.puremvc.haxe.patterns.facade.FacadeTest;
+org.puremvc.haxe.interfaces.IController = function() { }
+org.puremvc.haxe.interfaces.IController.__name__ = ["org","puremvc","haxe","interfaces","IController"];
+org.puremvc.haxe.interfaces.IController.prototype.executeCommand = null;
+org.puremvc.haxe.interfaces.IController.prototype.hasCommand = null;
+org.puremvc.haxe.interfaces.IController.prototype.registerCommand = null;
+org.puremvc.haxe.interfaces.IController.prototype.removeCommand = null;
+org.puremvc.haxe.interfaces.IController.prototype.__class__ = org.puremvc.haxe.interfaces.IController;
+org.puremvc.haxe.core = {}
+org.puremvc.haxe.core.Controller = function(p) { if( p === $_ ) return; {
+	$s.push("org.puremvc.haxe.core.Controller::new");
+	var $spos = $s.length;
+	org.puremvc.haxe.core.Controller.instance = this;
+	this.commandMap = new Hash();
+	this.initializeController();
+	$s.pop();
+}}
+org.puremvc.haxe.core.Controller.__name__ = ["org","puremvc","haxe","core","Controller"];
+org.puremvc.haxe.core.Controller.getInstance = function() {
+	$s.push("org.puremvc.haxe.core.Controller::getInstance");
+	var $spos = $s.length;
+	if(org.puremvc.haxe.core.Controller.instance == null) org.puremvc.haxe.core.Controller.instance = new org.puremvc.haxe.core.Controller();
+	{
+		var $tmp = org.puremvc.haxe.core.Controller.instance;
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.Controller.instance = null;
+org.puremvc.haxe.core.Controller.prototype.commandMap = null;
+org.puremvc.haxe.core.Controller.prototype.executeCommand = function(note) {
+	$s.push("org.puremvc.haxe.core.Controller::executeCommand");
+	var $spos = $s.length;
+	var commandClassRef = this.commandMap.get(note.getName());
+	if(commandClassRef == null) return;
+	var commandInstance = Type.createInstance(commandClassRef,[]);
+	commandInstance.execute(note);
+	$s.pop();
+}
+org.puremvc.haxe.core.Controller.prototype.hasCommand = function(notificationName) {
+	$s.push("org.puremvc.haxe.core.Controller::hasCommand");
+	var $spos = $s.length;
+	{
+		var $tmp = this.commandMap.exists(notificationName);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.Controller.prototype.initializeController = function() {
+	$s.push("org.puremvc.haxe.core.Controller::initializeController");
+	var $spos = $s.length;
+	this.view = org.puremvc.haxe.core.View.getInstance();
+	$s.pop();
+}
+org.puremvc.haxe.core.Controller.prototype.registerCommand = function(notificationName,commandClassRef) {
+	$s.push("org.puremvc.haxe.core.Controller::registerCommand");
+	var $spos = $s.length;
+	if(!this.commandMap.exists(notificationName)) this.view.registerObserver(notificationName,new org.puremvc.haxe.patterns.observer.Observer($closure(this,"executeCommand"),this));
+	this.commandMap.set(notificationName,commandClassRef);
+	$s.pop();
+}
+org.puremvc.haxe.core.Controller.prototype.removeCommand = function(notificationName) {
+	$s.push("org.puremvc.haxe.core.Controller::removeCommand");
+	var $spos = $s.length;
+	this.commandMap.remove(notificationName);
+	$s.pop();
+}
+org.puremvc.haxe.core.Controller.prototype.view = null;
+org.puremvc.haxe.core.Controller.prototype.__class__ = org.puremvc.haxe.core.Controller;
+org.puremvc.haxe.core.Controller.__interfaces__ = [org.puremvc.haxe.interfaces.IController];
 org.puremvc.haxe.interfaces.IProxy = function() { }
 org.puremvc.haxe.interfaces.IProxy.__name__ = ["org","puremvc","haxe","interfaces","IProxy"];
 org.puremvc.haxe.interfaces.IProxy.prototype.getData = null;
@@ -754,7 +825,6 @@ org.puremvc.haxe.patterns.proxy.Proxy.prototype.setData = function(data) {
 }
 org.puremvc.haxe.patterns.proxy.Proxy.prototype.__class__ = org.puremvc.haxe.patterns.proxy.Proxy;
 org.puremvc.haxe.patterns.proxy.Proxy.__interfaces__ = [org.puremvc.haxe.interfaces.IProxy];
-org.puremvc.haxe.core = {}
 org.puremvc.haxe.core.ModelTestProxy = function(p) { if( p === $_ ) return; {
 	$s.push("org.puremvc.haxe.core.ModelTestProxy::new");
 	var $spos = $s.length;
@@ -990,13 +1060,85 @@ org.puremvc.haxe.core.ViewTestMediator2.prototype.listNotificationInterests = fu
 	$s.pop();
 }
 org.puremvc.haxe.core.ViewTestMediator2.prototype.__class__ = org.puremvc.haxe.core.ViewTestMediator2;
-org.puremvc.haxe.interfaces.IController = function() { }
-org.puremvc.haxe.interfaces.IController.__name__ = ["org","puremvc","haxe","interfaces","IController"];
-org.puremvc.haxe.interfaces.IController.prototype.executeCommand = null;
-org.puremvc.haxe.interfaces.IController.prototype.hasCommand = null;
-org.puremvc.haxe.interfaces.IController.prototype.registerCommand = null;
-org.puremvc.haxe.interfaces.IController.prototype.removeCommand = null;
-org.puremvc.haxe.interfaces.IController.prototype.__class__ = org.puremvc.haxe.interfaces.IController;
+org.puremvc.haxe.interfaces.IModel = function() { }
+org.puremvc.haxe.interfaces.IModel.__name__ = ["org","puremvc","haxe","interfaces","IModel"];
+org.puremvc.haxe.interfaces.IModel.prototype.hasProxy = null;
+org.puremvc.haxe.interfaces.IModel.prototype.registerProxy = null;
+org.puremvc.haxe.interfaces.IModel.prototype.removeProxy = null;
+org.puremvc.haxe.interfaces.IModel.prototype.retrieveProxy = null;
+org.puremvc.haxe.interfaces.IModel.prototype.__class__ = org.puremvc.haxe.interfaces.IModel;
+org.puremvc.haxe.core.Model = function(p) { if( p === $_ ) return; {
+	$s.push("org.puremvc.haxe.core.Model::new");
+	var $spos = $s.length;
+	org.puremvc.haxe.core.Model.instance = this;
+	this.proxyMap = new Hash();
+	this.initializeModel();
+	$s.pop();
+}}
+org.puremvc.haxe.core.Model.__name__ = ["org","puremvc","haxe","core","Model"];
+org.puremvc.haxe.core.Model.getInstance = function() {
+	$s.push("org.puremvc.haxe.core.Model::getInstance");
+	var $spos = $s.length;
+	if(org.puremvc.haxe.core.Model.instance == null) org.puremvc.haxe.core.Model.instance = new org.puremvc.haxe.core.Model();
+	{
+		var $tmp = org.puremvc.haxe.core.Model.instance;
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.Model.instance = null;
+org.puremvc.haxe.core.Model.prototype.hasProxy = function(proxyName) {
+	$s.push("org.puremvc.haxe.core.Model::hasProxy");
+	var $spos = $s.length;
+	{
+		var $tmp = this.proxyMap.exists(proxyName);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.Model.prototype.initializeModel = function() {
+	$s.push("org.puremvc.haxe.core.Model::initializeModel");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}
+org.puremvc.haxe.core.Model.prototype.proxyMap = null;
+org.puremvc.haxe.core.Model.prototype.registerProxy = function(proxy) {
+	$s.push("org.puremvc.haxe.core.Model::registerProxy");
+	var $spos = $s.length;
+	this.proxyMap.set(proxy.getProxyName(),proxy);
+	proxy.onRegister();
+	$s.pop();
+}
+org.puremvc.haxe.core.Model.prototype.removeProxy = function(proxyName) {
+	$s.push("org.puremvc.haxe.core.Model::removeProxy");
+	var $spos = $s.length;
+	var proxy = this.proxyMap.get(proxyName);
+	if(proxy != null) {
+		this.proxyMap.remove(proxyName);
+		proxy.onRemove();
+	}
+	{
+		var $tmp = proxy;
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.Model.prototype.retrieveProxy = function(proxyName) {
+	$s.push("org.puremvc.haxe.core.Model::retrieveProxy");
+	var $spos = $s.length;
+	{
+		var $tmp = this.proxyMap.get(proxyName);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.Model.prototype.__class__ = org.puremvc.haxe.core.Model;
+org.puremvc.haxe.core.Model.__interfaces__ = [org.puremvc.haxe.interfaces.IModel];
 Reflect = function() { }
 Reflect.__name__ = ["Reflect"];
 Reflect.empty = function() {
@@ -1280,9 +1422,9 @@ for(var k in haxe.unit.TestCase.prototype ) org.puremvc.haxe.core.ViewTest.proto
 org.puremvc.haxe.core.ViewTest.prototype.cleanup = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::cleanup");
 	var $spos = $s.length;
-	org.puremvc.haxe.core.view.View.getInstance().removeMediator(org.puremvc.haxe.core.ViewTestMediator.NAME);
-	org.puremvc.haxe.core.view.View.getInstance().removeMediator(org.puremvc.haxe.core.ViewTestMediator2.NAME);
-	org.puremvc.haxe.core.view.View.getInstance().removeMediator(org.puremvc.haxe.core.ViewTestMediator3.NAME);
+	org.puremvc.haxe.core.View.getInstance().removeMediator(org.puremvc.haxe.core.ViewTestMediator.NAME);
+	org.puremvc.haxe.core.View.getInstance().removeMediator(org.puremvc.haxe.core.ViewTestMediator2.NAME);
+	org.puremvc.haxe.core.View.getInstance().removeMediator(org.puremvc.haxe.core.ViewTestMediator3.NAME);
 	$s.pop();
 }
 org.puremvc.haxe.core.ViewTest.prototype.lastNotification = null;
@@ -1291,7 +1433,7 @@ org.puremvc.haxe.core.ViewTest.prototype.onRemoveCalled = null;
 org.puremvc.haxe.core.ViewTest.prototype.testGetInstance = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::testGetInstance");
 	var $spos = $s.length;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	this.assertTrue(view != null,{ fileName : "ViewTest.hx", lineNumber : 40, className : "org.puremvc.haxe.core.ViewTest", methodName : "testGetInstance"});
 	this.assertTrue(Std["is"](view,org.puremvc.haxe.interfaces.IView),{ fileName : "ViewTest.hx", lineNumber : 41, className : "org.puremvc.haxe.core.ViewTest", methodName : "testGetInstance"});
 	$s.pop();
@@ -1299,7 +1441,7 @@ org.puremvc.haxe.core.ViewTest.prototype.testGetInstance = function() {
 org.puremvc.haxe.core.ViewTest.prototype.testHasMediator = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::testHasMediator");
 	var $spos = $s.length;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	var mediator = new org.puremvc.haxe.patterns.mediator.Mediator("hasMediatorTest",this);
 	view.registerMediator(mediator);
 	this.assertTrue(view.hasMediator("hasMediatorTest"),{ fileName : "ViewTest.hx", lineNumber : 143, className : "org.puremvc.haxe.core.ViewTest", methodName : "testHasMediator"});
@@ -1312,7 +1454,7 @@ org.puremvc.haxe.core.ViewTest.prototype.testOnRegisterAndOnRemove = function() 
 	var $spos = $s.length;
 	this.onRegisterCalled = false;
 	this.onRemoveCalled = false;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	var mediator = new org.puremvc.haxe.core.ViewTestMediator4(this);
 	view.registerMediator(mediator);
 	this.assertTrue(this.onRegisterCalled,{ fileName : "ViewTest.hx", lineNumber : 192, className : "org.puremvc.haxe.core.ViewTest", methodName : "testOnRegisterAndOnRemove"});
@@ -1324,7 +1466,7 @@ org.puremvc.haxe.core.ViewTest.prototype.testOnRegisterAndOnRemove = function() 
 org.puremvc.haxe.core.ViewTest.prototype.testRegisterAndNotifyObserver = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::testRegisterAndNotifyObserver");
 	var $spos = $s.length;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	var observer = new org.puremvc.haxe.patterns.observer.Observer($closure(this,"viewTestMethod"),this);
 	view.registerObserver(org.puremvc.haxe.core.ViewTestNote.NAME,observer);
 	var note = org.puremvc.haxe.core.ViewTestNote.create(10.0);
@@ -1335,7 +1477,7 @@ org.puremvc.haxe.core.ViewTest.prototype.testRegisterAndNotifyObserver = functio
 org.puremvc.haxe.core.ViewTest.prototype.testRegisterAndRemoveMediator = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::testRegisterAndRemoveMediator");
 	var $spos = $s.length;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	var mediator = new org.puremvc.haxe.patterns.mediator.Mediator("testing",this);
 	view.registerMediator(mediator);
 	var removedMediator = view.removeMediator("testing");
@@ -1347,7 +1489,7 @@ org.puremvc.haxe.core.ViewTest.prototype.testRegisterAndRemoveMediator = functio
 org.puremvc.haxe.core.ViewTest.prototype.testRegisterAndRetrieveMediator = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::testRegisterAndRetrieveMediator");
 	var $spos = $s.length;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	var viewTestMediator = new org.puremvc.haxe.core.ViewTestMediator(this);
 	view.registerMediator(viewTestMediator);
 	var mediator = view.retrieveMediator(org.puremvc.haxe.core.ViewTestMediator.NAME);
@@ -1358,7 +1500,7 @@ org.puremvc.haxe.core.ViewTest.prototype.testRegisterAndRetrieveMediator = funct
 org.puremvc.haxe.core.ViewTest.prototype.testRemoveMediatorAndSubsequentNotify = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::testRemoveMediatorAndSubsequentNotify");
 	var $spos = $s.length;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	view.registerMediator(new org.puremvc.haxe.core.ViewTestMediator2(this));
 	view.notifyObservers(new org.puremvc.haxe.patterns.observer.Notification(org.puremvc.haxe.core.ViewTest.NOTE1));
 	this.assertEquals(this.lastNotification,org.puremvc.haxe.core.ViewTest.NOTE1,{ fileName : "ViewTest.hx", lineNumber : 257, className : "org.puremvc.haxe.core.ViewTest", methodName : "testRemoveMediatorAndSubsequentNotify"});
@@ -1377,7 +1519,7 @@ org.puremvc.haxe.core.ViewTest.prototype.testRemoveMediatorAndSubsequentNotify =
 org.puremvc.haxe.core.ViewTest.prototype.testRemoveOneOfTwoMediatorsAndSubsequentNotify = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::testRemoveOneOfTwoMediatorsAndSubsequentNotify");
 	var $spos = $s.length;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	view.registerMediator(new org.puremvc.haxe.core.ViewTestMediator2(this));
 	view.registerMediator(new org.puremvc.haxe.core.ViewTestMediator3(this));
 	view.notifyObservers(new org.puremvc.haxe.patterns.observer.Notification(org.puremvc.haxe.core.ViewTest.NOTE1));
@@ -1401,7 +1543,7 @@ org.puremvc.haxe.core.ViewTest.prototype.testRemoveOneOfTwoMediatorsAndSubsequen
 org.puremvc.haxe.core.ViewTest.prototype.testSuccessiveRegisterAndRemoveMediator = function() {
 	$s.push("org.puremvc.haxe.core.ViewTest::testSuccessiveRegisterAndRemoveMediator");
 	var $spos = $s.length;
-	var view = org.puremvc.haxe.core.view.View.getInstance();
+	var view = org.puremvc.haxe.core.View.getInstance();
 	view.registerMediator(new org.puremvc.haxe.core.ViewTestMediator(this));
 	this.assertTrue(Std["is"](view.retrieveMediator(org.puremvc.haxe.core.ViewTestMediator.NAME),org.puremvc.haxe.core.ViewTestMediator),{ fileName : "ViewTest.hx", lineNumber : 216, className : "org.puremvc.haxe.core.ViewTest", methodName : "testSuccessiveRegisterAndRemoveMediator"});
 	view.removeMediator(org.puremvc.haxe.core.ViewTestMediator.NAME);
@@ -1443,7 +1585,7 @@ for(var k in haxe.unit.TestCase.prototype ) org.puremvc.haxe.core.ControllerTest
 org.puremvc.haxe.core.ControllerTest.prototype.testGetInstance = function() {
 	$s.push("org.puremvc.haxe.core.ControllerTest::testGetInstance");
 	var $spos = $s.length;
-	var controller = org.puremvc.haxe.core.controller.Controller.getInstance();
+	var controller = org.puremvc.haxe.core.Controller.getInstance();
 	this.assertTrue(controller != null,{ fileName : "ControllerTest.hx", lineNumber : 26, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testGetInstance"});
 	this.assertTrue(Std["is"](controller,org.puremvc.haxe.interfaces.IController),{ fileName : "ControllerTest.hx", lineNumber : 27, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testGetInstance"});
 	$s.pop();
@@ -1451,7 +1593,7 @@ org.puremvc.haxe.core.ControllerTest.prototype.testGetInstance = function() {
 org.puremvc.haxe.core.ControllerTest.prototype.testHasCommand = function() {
 	$s.push("org.puremvc.haxe.core.ControllerTest::testHasCommand");
 	var $spos = $s.length;
-	var controller = org.puremvc.haxe.core.controller.Controller.getInstance();
+	var controller = org.puremvc.haxe.core.Controller.getInstance();
 	controller.registerCommand("hasCommandTest",org.puremvc.haxe.core.ControllerTestCommand);
 	this.assertTrue(controller.hasCommand("hasCommandTest"),{ fileName : "ControllerTest.hx", lineNumber : 117, className : "org.puremvc.haxe.core.ControllerTest", methodName : "testHasCommand"});
 	controller.removeCommand("hasCommandTest");
@@ -1461,7 +1603,7 @@ org.puremvc.haxe.core.ControllerTest.prototype.testHasCommand = function() {
 org.puremvc.haxe.core.ControllerTest.prototype.testRegisterAndExecuteCommand = function() {
 	$s.push("org.puremvc.haxe.core.ControllerTest::testRegisterAndExecuteCommand");
 	var $spos = $s.length;
-	var controller = org.puremvc.haxe.core.controller.Controller.getInstance();
+	var controller = org.puremvc.haxe.core.Controller.getInstance();
 	controller.registerCommand("ControllerTest",org.puremvc.haxe.core.ControllerTestCommand);
 	var vo = new org.puremvc.haxe.core.ControllerTestVO(12.0);
 	var note = new org.puremvc.haxe.patterns.observer.Notification("ControllerTest",vo);
@@ -1472,7 +1614,7 @@ org.puremvc.haxe.core.ControllerTest.prototype.testRegisterAndExecuteCommand = f
 org.puremvc.haxe.core.ControllerTest.prototype.testRegisterAndRemoveCommand = function() {
 	$s.push("org.puremvc.haxe.core.ControllerTest::testRegisterAndRemoveCommand");
 	var $spos = $s.length;
-	var controller = org.puremvc.haxe.core.controller.Controller.getInstance();
+	var controller = org.puremvc.haxe.core.Controller.getInstance();
 	controller.registerCommand("ControllerRemoveTest",org.puremvc.haxe.core.ControllerTestCommand);
 	var vo = new org.puremvc.haxe.core.ControllerTestVO(12);
 	var note = new org.puremvc.haxe.patterns.observer.Notification("ControllerRemoveTest",vo);
@@ -1669,13 +1811,6 @@ org.puremvc.haxe.interfaces.IObserver.prototype.notifyObserver = null;
 org.puremvc.haxe.interfaces.IObserver.prototype.setNotifyContext = null;
 org.puremvc.haxe.interfaces.IObserver.prototype.setNotifyMethod = null;
 org.puremvc.haxe.interfaces.IObserver.prototype.__class__ = org.puremvc.haxe.interfaces.IObserver;
-org.puremvc.haxe.interfaces.IModel = function() { }
-org.puremvc.haxe.interfaces.IModel.__name__ = ["org","puremvc","haxe","interfaces","IModel"];
-org.puremvc.haxe.interfaces.IModel.prototype.hasProxy = null;
-org.puremvc.haxe.interfaces.IModel.prototype.registerProxy = null;
-org.puremvc.haxe.interfaces.IModel.prototype.removeProxy = null;
-org.puremvc.haxe.interfaces.IModel.prototype.retrieveProxy = null;
-org.puremvc.haxe.interfaces.IModel.prototype.__class__ = org.puremvc.haxe.interfaces.IModel;
 org.puremvc.haxe.patterns.command.MacroCommandTestSub1Command = function(p) { if( p === $_ ) return; {
 	$s.push("org.puremvc.haxe.patterns.command.MacroCommandTestSub1Command::new");
 	var $spos = $s.length;
@@ -2598,210 +2733,6 @@ js.Boot.__init = function() {
 	$s.pop();
 }
 js.Boot.prototype.__class__ = js.Boot;
-org.puremvc.haxe.core.model = {}
-org.puremvc.haxe.core.model.Model = function(p) { if( p === $_ ) return; {
-	$s.push("org.puremvc.haxe.core.model.Model::new");
-	var $spos = $s.length;
-	org.puremvc.haxe.core.model.Model.instance = this;
-	this.proxyMap = new Hash();
-	this.initializeModel();
-	$s.pop();
-}}
-org.puremvc.haxe.core.model.Model.__name__ = ["org","puremvc","haxe","core","model","Model"];
-org.puremvc.haxe.core.model.Model.getInstance = function() {
-	$s.push("org.puremvc.haxe.core.model.Model::getInstance");
-	var $spos = $s.length;
-	if(org.puremvc.haxe.core.model.Model.instance == null) org.puremvc.haxe.core.model.Model.instance = new org.puremvc.haxe.core.model.Model();
-	{
-		var $tmp = org.puremvc.haxe.core.model.Model.instance;
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.model.Model.instance = null;
-org.puremvc.haxe.core.model.Model.prototype.hasProxy = function(proxyName) {
-	$s.push("org.puremvc.haxe.core.model.Model::hasProxy");
-	var $spos = $s.length;
-	{
-		var $tmp = this.proxyMap.exists(proxyName);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.model.Model.prototype.initializeModel = function() {
-	$s.push("org.puremvc.haxe.core.model.Model::initializeModel");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}
-org.puremvc.haxe.core.model.Model.prototype.proxyMap = null;
-org.puremvc.haxe.core.model.Model.prototype.registerProxy = function(proxy) {
-	$s.push("org.puremvc.haxe.core.model.Model::registerProxy");
-	var $spos = $s.length;
-	this.proxyMap.set(proxy.getProxyName(),proxy);
-	proxy.onRegister();
-	$s.pop();
-}
-org.puremvc.haxe.core.model.Model.prototype.removeProxy = function(proxyName) {
-	$s.push("org.puremvc.haxe.core.model.Model::removeProxy");
-	var $spos = $s.length;
-	var proxy = this.proxyMap.get(proxyName);
-	if(proxy != null) {
-		this.proxyMap.remove(proxyName);
-		proxy.onRemove();
-	}
-	{
-		var $tmp = proxy;
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.model.Model.prototype.retrieveProxy = function(proxyName) {
-	$s.push("org.puremvc.haxe.core.model.Model::retrieveProxy");
-	var $spos = $s.length;
-	{
-		var $tmp = this.proxyMap.get(proxyName);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.model.Model.prototype.__class__ = org.puremvc.haxe.core.model.Model;
-org.puremvc.haxe.core.model.Model.__interfaces__ = [org.puremvc.haxe.interfaces.IModel];
-org.puremvc.haxe.core.view = {}
-org.puremvc.haxe.core.view.View = function(p) { if( p === $_ ) return; {
-	$s.push("org.puremvc.haxe.core.view.View::new");
-	var $spos = $s.length;
-	org.puremvc.haxe.core.view.View.instance = this;
-	this.mediatorMap = new Hash();
-	this.observerMap = new Hash();
-	this.initializeView();
-	$s.pop();
-}}
-org.puremvc.haxe.core.view.View.__name__ = ["org","puremvc","haxe","core","view","View"];
-org.puremvc.haxe.core.view.View.getInstance = function() {
-	$s.push("org.puremvc.haxe.core.view.View::getInstance");
-	var $spos = $s.length;
-	if(org.puremvc.haxe.core.view.View.instance == null) org.puremvc.haxe.core.view.View.instance = new org.puremvc.haxe.core.view.View();
-	{
-		var $tmp = org.puremvc.haxe.core.view.View.instance;
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.instance = null;
-org.puremvc.haxe.core.view.View.prototype.hasMediator = function(mediatorName) {
-	$s.push("org.puremvc.haxe.core.view.View::hasMediator");
-	var $spos = $s.length;
-	{
-		var $tmp = this.mediatorMap.exists(mediatorName);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.prototype.initializeView = function() {
-	$s.push("org.puremvc.haxe.core.view.View::initializeView");
-	var $spos = $s.length;
-	null;
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.prototype.mediatorMap = null;
-org.puremvc.haxe.core.view.View.prototype.notifyObservers = function(notification) {
-	$s.push("org.puremvc.haxe.core.view.View::notifyObservers");
-	var $spos = $s.length;
-	if(this.observerMap.exists(notification.getName())) {
-		var iterator = this.observerMap.get(notification.getName()).iterator();
-		{ var $it12 = iterator;
-		while( $it12.hasNext() ) { var observer = $it12.next();
-		observer.notifyObserver(notification);
-		}}
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.prototype.observerMap = null;
-org.puremvc.haxe.core.view.View.prototype.registerMediator = function(mediator) {
-	$s.push("org.puremvc.haxe.core.view.View::registerMediator");
-	var $spos = $s.length;
-	this.mediatorMap.set(mediator.getMediatorName(),mediator);
-	var interests = mediator.listNotificationInterests();
-	if(interests.length > 0) {
-		var observer = new org.puremvc.haxe.patterns.observer.Observer($closure(mediator,"handleNotification"),mediator);
-		{
-			var _g1 = 0, _g = interests.length;
-			while(_g1 < _g) {
-				var i = _g1++;
-				this.registerObserver(interests[i],observer);
-			}
-		}
-	}
-	mediator.onRegister();
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.prototype.registerObserver = function(notificationName,observer) {
-	$s.push("org.puremvc.haxe.core.view.View::registerObserver");
-	var $spos = $s.length;
-	if(!this.observerMap.exists(notificationName)) this.observerMap.set(notificationName,new List());
-	this.observerMap.get(notificationName).add(observer);
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.prototype.removeMediator = function(mediatorName) {
-	$s.push("org.puremvc.haxe.core.view.View::removeMediator");
-	var $spos = $s.length;
-	var mediator = this.mediatorMap.get(mediatorName);
-	if(mediator != null) {
-		var interests = mediator.listNotificationInterests();
-		{
-			var _g1 = 0, _g = interests.length;
-			while(_g1 < _g) {
-				var i = _g1++;
-				this.removeObserver(interests[i],mediator);
-			}
-		}
-		this.mediatorMap.remove(mediatorName);
-		mediator.onRemove();
-	}
-	{
-		var $tmp = mediator;
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.prototype.removeObserver = function(notificationName,notifyContext) {
-	$s.push("org.puremvc.haxe.core.view.View::removeObserver");
-	var $spos = $s.length;
-	var observers = this.observerMap.get(notificationName);
-	{ var $it13 = observers.iterator();
-	while( $it13.hasNext() ) { var observer = $it13.next();
-	{
-		if(observer.compareNotifyContext(notifyContext) == true) {
-			observers.remove(observer);
-			break;
-		}
-	}
-	}}
-	if(observers.isEmpty()) {
-		this.observerMap.remove(notificationName);
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.prototype.retrieveMediator = function(mediatorName) {
-	$s.push("org.puremvc.haxe.core.view.View::retrieveMediator");
-	var $spos = $s.length;
-	{
-		var $tmp = this.mediatorMap.get(mediatorName);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.view.View.prototype.__class__ = org.puremvc.haxe.core.view.View;
-org.puremvc.haxe.core.view.View.__interfaces__ = [org.puremvc.haxe.interfaces.IView];
 org.puremvc.haxe.patterns.command.MacroCommandTestSub2Command = function(p) { if( p === $_ ) return; {
 	$s.push("org.puremvc.haxe.patterns.command.MacroCommandTestSub2Command::new");
 	var $spos = $s.length;
@@ -3175,6 +3106,136 @@ haxe.Log.clear = function() {
 	$s.pop();
 }
 haxe.Log.prototype.__class__ = haxe.Log;
+org.puremvc.haxe.core.View = function(p) { if( p === $_ ) return; {
+	$s.push("org.puremvc.haxe.core.View::new");
+	var $spos = $s.length;
+	org.puremvc.haxe.core.View.instance = this;
+	this.mediatorMap = new Hash();
+	this.observerMap = new Hash();
+	this.initializeView();
+	$s.pop();
+}}
+org.puremvc.haxe.core.View.__name__ = ["org","puremvc","haxe","core","View"];
+org.puremvc.haxe.core.View.getInstance = function() {
+	$s.push("org.puremvc.haxe.core.View::getInstance");
+	var $spos = $s.length;
+	if(org.puremvc.haxe.core.View.instance == null) org.puremvc.haxe.core.View.instance = new org.puremvc.haxe.core.View();
+	{
+		var $tmp = org.puremvc.haxe.core.View.instance;
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.View.instance = null;
+org.puremvc.haxe.core.View.prototype.hasMediator = function(mediatorName) {
+	$s.push("org.puremvc.haxe.core.View::hasMediator");
+	var $spos = $s.length;
+	{
+		var $tmp = this.mediatorMap.exists(mediatorName);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.View.prototype.initializeView = function() {
+	$s.push("org.puremvc.haxe.core.View::initializeView");
+	var $spos = $s.length;
+	null;
+	$s.pop();
+}
+org.puremvc.haxe.core.View.prototype.mediatorMap = null;
+org.puremvc.haxe.core.View.prototype.notifyObservers = function(notification) {
+	$s.push("org.puremvc.haxe.core.View::notifyObservers");
+	var $spos = $s.length;
+	if(this.observerMap.exists(notification.getName())) {
+		var iterator = this.observerMap.get(notification.getName()).iterator();
+		{ var $it12 = iterator;
+		while( $it12.hasNext() ) { var observer = $it12.next();
+		observer.notifyObserver(notification);
+		}}
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.View.prototype.observerMap = null;
+org.puremvc.haxe.core.View.prototype.registerMediator = function(mediator) {
+	$s.push("org.puremvc.haxe.core.View::registerMediator");
+	var $spos = $s.length;
+	this.mediatorMap.set(mediator.getMediatorName(),mediator);
+	var interests = mediator.listNotificationInterests();
+	if(interests.length > 0) {
+		var observer = new org.puremvc.haxe.patterns.observer.Observer($closure(mediator,"handleNotification"),mediator);
+		{
+			var _g1 = 0, _g = interests.length;
+			while(_g1 < _g) {
+				var i = _g1++;
+				this.registerObserver(interests[i],observer);
+			}
+		}
+	}
+	mediator.onRegister();
+	$s.pop();
+}
+org.puremvc.haxe.core.View.prototype.registerObserver = function(notificationName,observer) {
+	$s.push("org.puremvc.haxe.core.View::registerObserver");
+	var $spos = $s.length;
+	if(!this.observerMap.exists(notificationName)) this.observerMap.set(notificationName,new List());
+	this.observerMap.get(notificationName).add(observer);
+	$s.pop();
+}
+org.puremvc.haxe.core.View.prototype.removeMediator = function(mediatorName) {
+	$s.push("org.puremvc.haxe.core.View::removeMediator");
+	var $spos = $s.length;
+	var mediator = this.mediatorMap.get(mediatorName);
+	if(mediator != null) {
+		var interests = mediator.listNotificationInterests();
+		{
+			var _g1 = 0, _g = interests.length;
+			while(_g1 < _g) {
+				var i = _g1++;
+				this.removeObserver(interests[i],mediator);
+			}
+		}
+		this.mediatorMap.remove(mediatorName);
+		mediator.onRemove();
+	}
+	{
+		var $tmp = mediator;
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.View.prototype.removeObserver = function(notificationName,notifyContext) {
+	$s.push("org.puremvc.haxe.core.View::removeObserver");
+	var $spos = $s.length;
+	var observers = this.observerMap.get(notificationName);
+	{ var $it13 = observers.iterator();
+	while( $it13.hasNext() ) { var observer = $it13.next();
+	{
+		if(observer.compareNotifyContext(notifyContext) == true) {
+			observers.remove(observer);
+			break;
+		}
+	}
+	}}
+	if(observers.isEmpty()) {
+		this.observerMap.remove(notificationName);
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.View.prototype.retrieveMediator = function(mediatorName) {
+	$s.push("org.puremvc.haxe.core.View::retrieveMediator");
+	var $spos = $s.length;
+	{
+		var $tmp = this.mediatorMap.get(mediatorName);
+		$s.pop();
+		return $tmp;
+	}
+	$s.pop();
+}
+org.puremvc.haxe.core.View.prototype.__class__ = org.puremvc.haxe.core.View;
+org.puremvc.haxe.core.View.__interfaces__ = [org.puremvc.haxe.interfaces.IView];
 Hash = function(p) { if( p === $_ ) return; {
 	$s.push("Hash::new");
 	var $spos = $s.length;
@@ -3518,7 +3579,7 @@ for(var k in haxe.unit.TestCase.prototype ) org.puremvc.haxe.core.ModelTest.prot
 org.puremvc.haxe.core.ModelTest.prototype.testGetInstance = function() {
 	$s.push("org.puremvc.haxe.core.ModelTest::testGetInstance");
 	var $spos = $s.length;
-	var model = org.puremvc.haxe.core.model.Model.getInstance();
+	var model = org.puremvc.haxe.core.Model.getInstance();
 	this.assertTrue(model != null,{ fileName : "ModelTest.hx", lineNumber : 28, className : "org.puremvc.haxe.core.ModelTest", methodName : "testGetInstance"});
 	this.assertTrue(Std["is"](model,org.puremvc.haxe.interfaces.IModel),{ fileName : "ModelTest.hx", lineNumber : 29, className : "org.puremvc.haxe.core.ModelTest", methodName : "testGetInstance"});
 	$s.pop();
@@ -3526,7 +3587,7 @@ org.puremvc.haxe.core.ModelTest.prototype.testGetInstance = function() {
 org.puremvc.haxe.core.ModelTest.prototype.testHasProxy = function() {
 	$s.push("org.puremvc.haxe.core.ModelTest::testHasProxy");
 	var $spos = $s.length;
-	var model = org.puremvc.haxe.core.model.Model.getInstance();
+	var model = org.puremvc.haxe.core.Model.getInstance();
 	var proxy = new org.puremvc.haxe.patterns.proxy.Proxy("aces",["clubs","spades","hearts","diamonds"]);
 	model.registerProxy(proxy);
 	this.assertTrue(model.hasProxy("aces"),{ fileName : "ModelTest.hx", lineNumber : 92, className : "org.puremvc.haxe.core.ModelTest", methodName : "testHasProxy"});
@@ -3537,7 +3598,7 @@ org.puremvc.haxe.core.ModelTest.prototype.testHasProxy = function() {
 org.puremvc.haxe.core.ModelTest.prototype.testOnRegisterAndOnRemove = function() {
 	$s.push("org.puremvc.haxe.core.ModelTest::testOnRegisterAndOnRemove");
 	var $spos = $s.length;
-	var model = org.puremvc.haxe.core.model.Model.getInstance();
+	var model = org.puremvc.haxe.core.Model.getInstance();
 	var proxy = new org.puremvc.haxe.core.ModelTestProxy();
 	model.registerProxy(proxy);
 	this.assertEquals(proxy.getData(),org.puremvc.haxe.core.ModelTestProxy.ON_REGISTER_CALLED,{ fileName : "ModelTest.hx", lineNumber : 115, className : "org.puremvc.haxe.core.ModelTest", methodName : "testOnRegisterAndOnRemove"});
@@ -3548,7 +3609,7 @@ org.puremvc.haxe.core.ModelTest.prototype.testOnRegisterAndOnRemove = function()
 org.puremvc.haxe.core.ModelTest.prototype.testRegisterAndRemoveProxy = function() {
 	$s.push("org.puremvc.haxe.core.ModelTest::testRegisterAndRemoveProxy");
 	var $spos = $s.length;
-	var model = org.puremvc.haxe.core.model.Model.getInstance();
+	var model = org.puremvc.haxe.core.Model.getInstance();
 	var proxy = new org.puremvc.haxe.patterns.proxy.Proxy("sizes",["7","13","21"]);
 	model.registerProxy(proxy);
 	var removedProxy = model.removeProxy("sizes");
@@ -3560,7 +3621,7 @@ org.puremvc.haxe.core.ModelTest.prototype.testRegisterAndRemoveProxy = function(
 org.puremvc.haxe.core.ModelTest.prototype.testRegisterAndRetrieveProxy = function() {
 	$s.push("org.puremvc.haxe.core.ModelTest::testRegisterAndRetrieveProxy");
 	var $spos = $s.length;
-	var model = org.puremvc.haxe.core.model.Model.getInstance();
+	var model = org.puremvc.haxe.core.Model.getInstance();
 	model.registerProxy(new org.puremvc.haxe.patterns.proxy.Proxy("colors",["red","green","blue"]));
 	var proxy = model.retrieveProxy("colors");
 	var data = function($this) {
@@ -3648,7 +3709,7 @@ org.puremvc.haxe.patterns.facade.Facade.prototype.initializeController = functio
 	$s.push("org.puremvc.haxe.patterns.facade.Facade::initializeController");
 	var $spos = $s.length;
 	if(this.controller != null) return;
-	this.controller = org.puremvc.haxe.core.controller.Controller.getInstance();
+	this.controller = org.puremvc.haxe.core.Controller.getInstance();
 	$s.pop();
 }
 org.puremvc.haxe.patterns.facade.Facade.prototype.initializeFacade = function() {
@@ -3663,14 +3724,14 @@ org.puremvc.haxe.patterns.facade.Facade.prototype.initializeModel = function() {
 	$s.push("org.puremvc.haxe.patterns.facade.Facade::initializeModel");
 	var $spos = $s.length;
 	if(this.model != null) return;
-	this.model = org.puremvc.haxe.core.model.Model.getInstance();
+	this.model = org.puremvc.haxe.core.Model.getInstance();
 	$s.pop();
 }
 org.puremvc.haxe.patterns.facade.Facade.prototype.initializeView = function() {
 	$s.push("org.puremvc.haxe.patterns.facade.Facade::initializeView");
 	var $spos = $s.length;
 	if(this.view != null) return;
-	this.view = org.puremvc.haxe.core.view.View.getInstance();
+	this.view = org.puremvc.haxe.core.View.getInstance();
 	$s.pop();
 }
 org.puremvc.haxe.patterns.facade.Facade.prototype.model = null;
@@ -3815,70 +3876,6 @@ org.puremvc.haxe.core.ViewTestMediator4.prototype.onRemove = function() {
 	$s.pop();
 }
 org.puremvc.haxe.core.ViewTestMediator4.prototype.__class__ = org.puremvc.haxe.core.ViewTestMediator4;
-org.puremvc.haxe.core.controller = {}
-org.puremvc.haxe.core.controller.Controller = function(p) { if( p === $_ ) return; {
-	$s.push("org.puremvc.haxe.core.controller.Controller::new");
-	var $spos = $s.length;
-	org.puremvc.haxe.core.controller.Controller.instance = this;
-	this.commandMap = new Hash();
-	this.initializeController();
-	$s.pop();
-}}
-org.puremvc.haxe.core.controller.Controller.__name__ = ["org","puremvc","haxe","core","controller","Controller"];
-org.puremvc.haxe.core.controller.Controller.getInstance = function() {
-	$s.push("org.puremvc.haxe.core.controller.Controller::getInstance");
-	var $spos = $s.length;
-	if(org.puremvc.haxe.core.controller.Controller.instance == null) org.puremvc.haxe.core.controller.Controller.instance = new org.puremvc.haxe.core.controller.Controller();
-	{
-		var $tmp = org.puremvc.haxe.core.controller.Controller.instance;
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.controller.Controller.instance = null;
-org.puremvc.haxe.core.controller.Controller.prototype.commandMap = null;
-org.puremvc.haxe.core.controller.Controller.prototype.executeCommand = function(note) {
-	$s.push("org.puremvc.haxe.core.controller.Controller::executeCommand");
-	var $spos = $s.length;
-	var commandClassRef = this.commandMap.get(note.getName());
-	if(commandClassRef == null) return;
-	var commandInstance = Type.createInstance(commandClassRef,[]);
-	commandInstance.execute(note);
-	$s.pop();
-}
-org.puremvc.haxe.core.controller.Controller.prototype.hasCommand = function(notificationName) {
-	$s.push("org.puremvc.haxe.core.controller.Controller::hasCommand");
-	var $spos = $s.length;
-	{
-		var $tmp = this.commandMap.exists(notificationName);
-		$s.pop();
-		return $tmp;
-	}
-	$s.pop();
-}
-org.puremvc.haxe.core.controller.Controller.prototype.initializeController = function() {
-	$s.push("org.puremvc.haxe.core.controller.Controller::initializeController");
-	var $spos = $s.length;
-	this.view = org.puremvc.haxe.core.view.View.getInstance();
-	$s.pop();
-}
-org.puremvc.haxe.core.controller.Controller.prototype.registerCommand = function(notificationName,commandClassRef) {
-	$s.push("org.puremvc.haxe.core.controller.Controller::registerCommand");
-	var $spos = $s.length;
-	if(!this.commandMap.exists(notificationName)) this.view.registerObserver(notificationName,new org.puremvc.haxe.patterns.observer.Observer($closure(this,"executeCommand"),this));
-	this.commandMap.set(notificationName,commandClassRef);
-	$s.pop();
-}
-org.puremvc.haxe.core.controller.Controller.prototype.removeCommand = function(notificationName) {
-	$s.push("org.puremvc.haxe.core.controller.Controller::removeCommand");
-	var $spos = $s.length;
-	this.commandMap.remove(notificationName);
-	$s.pop();
-}
-org.puremvc.haxe.core.controller.Controller.prototype.view = null;
-org.puremvc.haxe.core.controller.Controller.prototype.__class__ = org.puremvc.haxe.core.controller.Controller;
-org.puremvc.haxe.core.controller.Controller.__interfaces__ = [org.puremvc.haxe.interfaces.IController];
 haxe.unit.TestResult = function(p) { if( p === $_ ) return; {
 	$s.push("haxe.unit.TestResult::new");
 	var $spos = $s.length;

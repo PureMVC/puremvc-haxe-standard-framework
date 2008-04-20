@@ -5,9 +5,9 @@
  */
 package org.puremvc.haxe.patterns.facade;
 
-import org.puremvc.haxe.core.view.View;
-import org.puremvc.haxe.core.model.Model;
-import org.puremvc.haxe.core.controller.Controller;
+import org.puremvc.haxe.core.View;
+import org.puremvc.haxe.core.Model;
+import org.puremvc.haxe.core.Controller;
 import org.puremvc.haxe.patterns.observer.Notification;
 import org.puremvc.haxe.interfaces.IFacade;
 import org.puremvc.haxe.interfaces.INotification;

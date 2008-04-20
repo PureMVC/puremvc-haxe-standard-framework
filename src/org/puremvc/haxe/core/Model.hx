@@ -3,7 +3,7 @@
  PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
  */
-package org.puremvc.haxe.core.model;
+package org.puremvc.haxe.core;
 
 import org.puremvc.haxe.interfaces.IModel;
 import org.puremvc.haxe.interfaces.IProxy;

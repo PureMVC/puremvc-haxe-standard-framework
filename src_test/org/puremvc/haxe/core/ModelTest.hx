@@ -5,7 +5,7 @@
  */
 package org.puremvc.haxe.core;
 
-import org.puremvc.haxe.core.model.Model;
+import org.puremvc.haxe.core.Model;
 import org.puremvc.haxe.interfaces.IProxy;
 import org.puremvc.haxe.interfaces.IModel;
 import org.puremvc.haxe.patterns.proxy.Proxy;

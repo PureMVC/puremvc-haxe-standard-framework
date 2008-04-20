@@ -164,6 +164,129 @@
  * using [Notification]s.
  ]]></haxe_doc>
 	</class>
+	<class path="org.puremvc.haxe.core.View" params="" file="src/org/puremvc/haxe/core/View.hx">
+		<implements path="org.puremvc.haxe.interfaces.IView"/>
+		<getInstance public="1" line="60" static="1">
+			<f a=""><c path="org.puremvc.haxe.interfaces.IView"/></f>
+			<haxe_doc>
+	 * View Singleton Factory method.
+	 </haxe_doc>
+		</getInstance>
+		<instance static="1"><c path="org.puremvc.haxe.interfaces.IView"/></instance>
+		<initializeView line="53">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc><![CDATA[
+	 * Initialize the Singleton [View] instance.
+	 * 
+	 * <p>Called automatically by the constructor, this is your opportunity to initialize the Singleton
+	 * instance in your subclass without overriding the constructor.</p>
+	 ]]></haxe_doc>
+		</initializeView>
+		<registerObserver public="1" line="69">
+			<f a="notificationName:observer">
+				<c path="String"/>
+				<c path="org.puremvc.haxe.interfaces.IObserver"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Register an [IObserver] to be notified of [INotifications] with a given name.
+	 </haxe_doc>
+		</registerObserver>
+		<notifyObservers public="1" line="83">
+			<f a="notification">
+				<c path="org.puremvc.haxe.interfaces.INotification"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	 * Notify the [IObservers] for a particular [INotification].
+	 * 
+	 * <p>All previously attached [IObservers] for this [INotification]'s
+	 * list are notified and are passed a reference to the [INotification] in 
+	 * the order in which they were registered.</p>
+	 ]]></haxe_doc>
+		</notifyObservers>
+		<removeObserver public="1" line="96">
+			<f a="notificationName:notifyContext">
+				<c path="String"/>
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+ 	* Remove the observer for a given notifyContext from an observer list for a given Notification name.
+ 	</haxe_doc>
+		</removeObserver>
+		<registerMediator public="1" line="133">
+			<f a="mediator">
+				<c path="org.puremvc.haxe.interfaces.IMediator"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	 * Register an [IMediator] instance with the [View].
+	 * 
+	 * <p>Registers the [IMediator] so that it can be retrieved by name,
+	 * and further interrogates the [IMediator] for its [INotification] interests.</p>
+	 * <p>
+	 * If the [IMediator] returns any [INotification] 
+	 * names to be notified about, an [Observer] is created encapsulating 
+	 * the [IMediator] instance's [handleNotification] method 
+	 * and registering it as an [Observer] for all [INotifications] the 
+	 * [IMediator] is interested in.</p>
+	 ]]></haxe_doc>
+		</registerMediator>
+		<retrieveMediator public="1" line="156">
+			<f a="mediatorName">
+				<c path="String"/>
+				<c path="org.puremvc.haxe.interfaces.IMediator"/>
+			</f>
+			<haxe_doc>
+	 * Retrieve an [IMediator] from the [View].
+	 </haxe_doc>
+		</retrieveMediator>
+		<removeMediator public="1" line="164">
+			<f a="mediatorName">
+				<c path="String"/>
+				<c path="org.puremvc.haxe.interfaces.IMediator"/>
+			</f>
+			<haxe_doc>
+ 	* Remove an [IMediator] from the [View].
+ 	</haxe_doc>
+		</removeMediator>
+		<hasMediator public="1" line="193">
+			<f a="mediatorName">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	 * Check if a Mediator is registered or not
+	 </haxe_doc>
+		</hasMediator>
+		<mediatorMap><c path="Hash"><c path="org.puremvc.haxe.interfaces.IMediator"/></c></mediatorMap>
+		<observerMap><c path="Hash"><c path="List"><c path="org.puremvc.haxe.interfaces.IObserver"/></c></c></observerMap>
+		<new public="1" line="39">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc><![CDATA[
+	 * Constructor. 
+	 * 
+	 * <p>This [IView] implementation is a Singleton, 
+	 * so you should not call the constructor 
+	 * directly, but instead call the static Singleton 
+	 * Factory method [View.getInstance()]</p>
+	 ]]></haxe_doc>
+		</new>
+		<haxe_doc><![CDATA[
+ * A Singleton [IView] implementation.
+ * 
+ * <p>In PureMVC, the [View] class assumes these responsibilities:</p>
+ * <ul>
+ * <li>Maintain a cache of [IMediator] instances.</li>
+ * <li>Provide methods for registering, retrieving, and removing [IMediators].</li>
+ * <li>Managing the observer lists for each [INotification] in the application.</li>
+ * <li>Providing a method for attaching [IObservers] to an [INotification]'s observer list.</li>
+ * <li>Providing a method for broadcasting an [INotification].</li>
+ * <li>Notifying the [IObservers] of a given [INotification] when it broadcast.</li>
+ * </ul>
+ ]]></haxe_doc>
+	</class>
 	<class path="Reflect" params="" file="/usr/local/lib/haxe/std/Reflect.hx">
 		<empty public="1" line="35" static="1">
 			<f a=""><a/></f>
@@ -524,129 +647,6 @@
 </f></__double>
 		<__neko line="306"><f a=""><unknown/></f></__neko>
 		<new line="32"><f a=""><e path="Void"/></f></new>
-	</class>
-	<class path="org.puremvc.haxe.core.view.View" params="" file="src/org/puremvc/haxe/core/view/View.hx">
-		<implements path="org.puremvc.haxe.interfaces.IView"/>
-		<getInstance public="1" line="60" static="1">
-			<f a=""><c path="org.puremvc.haxe.interfaces.IView"/></f>
-			<haxe_doc>
-	 * View Singleton Factory method.
-	 </haxe_doc>
-		</getInstance>
-		<instance static="1"><c path="org.puremvc.haxe.interfaces.IView"/></instance>
-		<initializeView line="53">
-			<f a=""><e path="Void"/></f>
-			<haxe_doc><![CDATA[
-	 * Initialize the Singleton [View] instance.
-	 * 
-	 * <p>Called automatically by the constructor, this is your opportunity to initialize the Singleton
-	 * instance in your subclass without overriding the constructor.</p>
-	 ]]></haxe_doc>
-		</initializeView>
-		<registerObserver public="1" line="69">
-			<f a="notificationName:observer">
-				<c path="String"/>
-				<c path="org.puremvc.haxe.interfaces.IObserver"/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc>
-	 * Register an [IObserver] to be notified of [INotifications] with a given name.
-	 </haxe_doc>
-		</registerObserver>
-		<notifyObservers public="1" line="83">
-			<f a="notification">
-				<c path="org.puremvc.haxe.interfaces.INotification"/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc><![CDATA[
-	 * Notify the [IObservers] for a particular [INotification].
-	 * 
-	 * <p>All previously attached [IObservers] for this [INotification]'s
-	 * list are notified and are passed a reference to the [INotification] in 
-	 * the order in which they were registered.</p>
-	 ]]></haxe_doc>
-		</notifyObservers>
-		<removeObserver public="1" line="96">
-			<f a="notificationName:notifyContext">
-				<c path="String"/>
-				<d/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc>
- 	* Remove the observer for a given notifyContext from an observer list for a given Notification name.
- 	</haxe_doc>
-		</removeObserver>
-		<registerMediator public="1" line="133">
-			<f a="mediator">
-				<c path="org.puremvc.haxe.interfaces.IMediator"/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc><![CDATA[
-	 * Register an [IMediator] instance with the [View].
-	 * 
-	 * <p>Registers the [IMediator] so that it can be retrieved by name,
-	 * and further interrogates the [IMediator] for its [INotification] interests.</p>
-	 * <p>
-	 * If the [IMediator] returns any [INotification] 
-	 * names to be notified about, an [Observer] is created encapsulating 
-	 * the [IMediator] instance's [handleNotification] method 
-	 * and registering it as an [Observer] for all [INotifications] the 
-	 * [IMediator] is interested in.</p>
-	 ]]></haxe_doc>
-		</registerMediator>
-		<retrieveMediator public="1" line="156">
-			<f a="mediatorName">
-				<c path="String"/>
-				<c path="org.puremvc.haxe.interfaces.IMediator"/>
-			</f>
-			<haxe_doc>
-	 * Retrieve an [IMediator] from the [View].
-	 </haxe_doc>
-		</retrieveMediator>
-		<removeMediator public="1" line="164">
-			<f a="mediatorName">
-				<c path="String"/>
-				<c path="org.puremvc.haxe.interfaces.IMediator"/>
-			</f>
-			<haxe_doc>
- 	* Remove an [IMediator] from the [View].
- 	</haxe_doc>
-		</removeMediator>
-		<hasMediator public="1" line="193">
-			<f a="mediatorName">
-				<c path="String"/>
-				<e path="Bool"/>
-			</f>
-			<haxe_doc>
-	 * Check if a Mediator is registered or not
-	 </haxe_doc>
-		</hasMediator>
-		<mediatorMap><c path="Hash"><c path="org.puremvc.haxe.interfaces.IMediator"/></c></mediatorMap>
-		<observerMap><c path="Hash"><c path="List"><c path="org.puremvc.haxe.interfaces.IObserver"/></c></c></observerMap>
-		<new public="1" line="39">
-			<f a=""><e path="Void"/></f>
-			<haxe_doc><![CDATA[
-	 * Constructor. 
-	 * 
-	 * <p>This [IView] implementation is a Singleton, 
-	 * so you should not call the constructor 
-	 * directly, but instead call the static Singleton 
-	 * Factory method [View.getInstance()]</p>
-	 ]]></haxe_doc>
-		</new>
-		<haxe_doc><![CDATA[
- * A Singleton [IView] implementation.
- * 
- * <p>In PureMVC, the [View] class assumes these responsibilities:</p>
- * <ul>
- * <li>Maintain a cache of [IMediator] instances.</li>
- * <li>Provide methods for registering, retrieving, and removing [IMediators].</li>
- * <li>Managing the observer lists for each [INotification] in the application.</li>
- * <li>Providing a method for attaching [IObservers] to an [INotification]'s observer list.</li>
- * <li>Providing a method for broadcasting an [INotification].</li>
- * <li>Notifying the [IObservers] of a given [INotification] when it broadcast.</li>
- * </ul>
- ]]></haxe_doc>
 	</class>
 	<class path="org.puremvc.haxe.interfaces.IObserver" params="" file="src/org/puremvc/haxe/interfaces/IObserver.hx" interface="1">
 		<setNotifyMethod public="1">
@@ -1548,7 +1548,7 @@
  * </ul>
  ]]></haxe_doc>
 	</class>
-	<class path="org.puremvc.haxe.core.controller.Controller" params="" file="src/org/puremvc/haxe/core/controller/Controller.hx">
+	<class path="org.puremvc.haxe.core.Controller" params="" file="src/org/puremvc/haxe/core/Controller.hx">
 		<implements path="org.puremvc.haxe.interfaces.IController"/>
 		<getInstance public="1" line="67" static="1">
 			<f a=""><c path="org.puremvc.haxe.interfaces.IController"/></f>
@@ -1772,86 +1772,6 @@
  * encapsulating that [IMediator]'s ([handleNotification]) method
  * and register it as an Observer for each [INotification] name returned by 
  * [listNotificationInterests].</p>
- ]]></haxe_doc>
-	</class>
-	<class path="org.puremvc.haxe.core.model.Model" params="" file="src/org/puremvc/haxe/core/model/Model.hx">
-		<implements path="org.puremvc.haxe.interfaces.IModel"/>
-		<getInstance public="1" line="54" static="1">
-			<f a=""><c path="org.puremvc.haxe.interfaces.IModel"/></f>
-			<haxe_doc>
-	 * [Model] Singleton Factory method.
-	 </haxe_doc>
-		</getInstance>
-		<instance static="1"><c path="org.puremvc.haxe.interfaces.IModel"/></instance>
-		<initializeModel line="47">
-			<f a=""><e path="Void"/></f>
-			<haxe_doc><![CDATA[
-	 * Initialize the Singleton [Model] instance.
-	 * 
-	 * <p>Called automatically by the constructor, this is your opportunity to initialize the Singleton
-	 * instance in your subclass without overriding the constructor.</p>
-	 ]]></haxe_doc>
-		</initializeModel>
-		<registerProxy public="1" line="63">
-			<f a="proxy">
-				<c path="org.puremvc.haxe.interfaces.IProxy"/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc>
-	 * Register an [IProxy] with the [Model].
-	 </haxe_doc>
-		</registerProxy>
-		<retrieveProxy public="1" line="72">
-			<f a="proxyName">
-				<c path="String"/>
-				<c path="org.puremvc.haxe.interfaces.IProxy"/>
-			</f>
-			<haxe_doc>
-	 * Retrieve an [IProxy] from the [Model].
-	 </haxe_doc>
-		</retrieveProxy>
-		<hasProxy public="1" line="80">
-			<f a="proxyName">
-				<c path="String"/>
-				<e path="Bool"/>
-			</f>
-			<haxe_doc>
-	 * Check if a [Proxy] is registered
-	 </haxe_doc>
-		</hasProxy>
-		<removeProxy public="1" line="88">
-			<f a="proxyName">
-				<c path="String"/>
-				<c path="org.puremvc.haxe.interfaces.IProxy"/>
-			</f>
-			<haxe_doc>
-	 * Remove an [IProxy] from the [Model].
-	 </haxe_doc>
-		</removeProxy>
-		<proxyMap><c path="Hash"><c path="org.puremvc.haxe.interfaces.IProxy"/></c></proxyMap>
-		<new line="34">
-			<f a=""><e path="Void"/></f>
-			<haxe_doc><![CDATA[
-	 * Constructor. 
-	 * 
-	 * <p>This [IModel] implementation is a Singleton, so you should not call the constructor 
-	 * directly, but instead call the static Singleton Factory method [Model.getInstance()]</p>
-	 ]]></haxe_doc>
-		</new>
-		<haxe_doc><![CDATA[
- * A Singleton [IModel] implementation.
- * 
- * <p>In PureMVC, the [Model] class provides access to model objects (Proxies) by named lookup.</p> 
- * 
- * <p>The [Model] assumes these responsibilities:</p>
- * <ul>
- * <li>Maintain a cache of [IProxy] instances.</li>
- * <li>Provide methods for registering, retrieving, and removing [IProxy] instances.</li>
- * </ul>
- * 
- * <p>Your application must register [IProxy] instances with the [Model]. Typically, you use an 
- * [ICommand] to create and register [IProxy] instances once the [Facade] has initialized the Core 
- * actors.</p>
  ]]></haxe_doc>
 	</class>
 	<class path="org.puremvc.haxe.interfaces.IProxy" params="" file="src/org/puremvc/haxe/interfaces/IProxy.hx" interface="1">
@@ -2151,6 +2071,86 @@
 		<haxe_doc>
 	Integer iterator. Used for interval implementation.
 </haxe_doc>
+	</class>
+	<class path="org.puremvc.haxe.core.Model" params="" file="src/org/puremvc/haxe/core/Model.hx">
+		<implements path="org.puremvc.haxe.interfaces.IModel"/>
+		<getInstance public="1" line="54" static="1">
+			<f a=""><c path="org.puremvc.haxe.interfaces.IModel"/></f>
+			<haxe_doc>
+	 * [Model] Singleton Factory method.
+	 </haxe_doc>
+		</getInstance>
+		<instance static="1"><c path="org.puremvc.haxe.interfaces.IModel"/></instance>
+		<initializeModel line="47">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc><![CDATA[
+	 * Initialize the Singleton [Model] instance.
+	 * 
+	 * <p>Called automatically by the constructor, this is your opportunity to initialize the Singleton
+	 * instance in your subclass without overriding the constructor.</p>
+	 ]]></haxe_doc>
+		</initializeModel>
+		<registerProxy public="1" line="63">
+			<f a="proxy">
+				<c path="org.puremvc.haxe.interfaces.IProxy"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	 * Register an [IProxy] with the [Model].
+	 </haxe_doc>
+		</registerProxy>
+		<retrieveProxy public="1" line="72">
+			<f a="proxyName">
+				<c path="String"/>
+				<c path="org.puremvc.haxe.interfaces.IProxy"/>
+			</f>
+			<haxe_doc>
+	 * Retrieve an [IProxy] from the [Model].
+	 </haxe_doc>
+		</retrieveProxy>
+		<hasProxy public="1" line="80">
+			<f a="proxyName">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	 * Check if a [Proxy] is registered
+	 </haxe_doc>
+		</hasProxy>
+		<removeProxy public="1" line="88">
+			<f a="proxyName">
+				<c path="String"/>
+				<c path="org.puremvc.haxe.interfaces.IProxy"/>
+			</f>
+			<haxe_doc>
+	 * Remove an [IProxy] from the [Model].
+	 </haxe_doc>
+		</removeProxy>
+		<proxyMap><c path="Hash"><c path="org.puremvc.haxe.interfaces.IProxy"/></c></proxyMap>
+		<new line="34">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc><![CDATA[
+	 * Constructor. 
+	 * 
+	 * <p>This [IModel] implementation is a Singleton, so you should not call the constructor 
+	 * directly, but instead call the static Singleton Factory method [Model.getInstance()]</p>
+	 ]]></haxe_doc>
+		</new>
+		<haxe_doc><![CDATA[
+ * A Singleton [IModel] implementation.
+ * 
+ * <p>In PureMVC, the [Model] class provides access to model objects (Proxies) by named lookup.</p> 
+ * 
+ * <p>The [Model] assumes these responsibilities:</p>
+ * <ul>
+ * <li>Maintain a cache of [IProxy] instances.</li>
+ * <li>Provide methods for registering, retrieving, and removing [IProxy] instances.</li>
+ * </ul>
+ * 
+ * <p>Your application must register [IProxy] instances with the [Model]. Typically, you use an 
+ * [ICommand] to create and register [IProxy] instances once the [Facade] has initialized the Core 
+ * actors.</p>
+ ]]></haxe_doc>
 	</class>
 	<class path="Std" params="" file="/usr/local/lib/haxe/std/Std.hx">
 		<is public="1" line="34" static="1">

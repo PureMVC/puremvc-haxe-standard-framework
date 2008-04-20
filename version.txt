@@ -20,7 +20,7 @@ Release Date: 04/17/08
 	  if it is registered.
 
 1.0.1 Removed demos. Added compiled unit tests bin for all supported platform and
-      instructions on how to run them. A couple of bugfixes on tests to meke them cross-platform.
+      instructions on how to run them. A couple of bugfixes on tests to make them cross-platform.
 
 1.0   First official release on PureMVC.org. Framework source, Demos and Docs 
       are all in the same project with build files for each. These need to 

@@ -5,7 +5,7 @@
  */
 package org.puremvc.haxe.core;
 
-import org.puremvc.haxe.core.view.View;
+import org.puremvc.haxe.core.View;
 import org.puremvc.haxe.interfaces.IView;
 import org.puremvc.haxe.interfaces.IMediator;
 import org.puremvc.haxe.interfaces.INotification;

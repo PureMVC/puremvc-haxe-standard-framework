@@ -5,7 +5,7 @@
  */
 package org.puremvc.haxe.core;
 
-import org.puremvc.haxe.core.controller.Controller;
+import org.puremvc.haxe.core.Controller;
 import org.puremvc.haxe.interfaces.IController;
 import org.puremvc.haxe.patterns.observer.Notification;
  	

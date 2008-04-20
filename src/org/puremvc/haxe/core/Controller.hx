@@ -3,9 +3,9 @@
  PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
  Your reuse is governed by the Creative Commons Attribution 3.0 License 
  */
-package org.puremvc.haxe.core.controller;
+package org.puremvc.haxe.core;
 
-import org.puremvc.haxe.core.view.View;
+import org.puremvc.haxe.core.View;
 import org.puremvc.haxe.interfaces.ICommand;
 import org.puremvc.haxe.interfaces.IView;
 import org.puremvc.haxe.interfaces.IController;
