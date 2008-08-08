@@ -182,7 +182,7 @@ class Facade implements IFacade
 	 */
 	public function removeProxy( proxyName: String ): IProxy
 	{
-		var proxy: IProxy;
+		var proxy: IProxy = null;
 		if ( model != null ) proxy = model.removeProxy( proxyName );
 		return proxy;	
 	}
@@ -216,7 +216,7 @@ class Facade implements IFacade
 	 */
 	public function removeMediator( mediatorName: String ): IMediator
 	{
-		var mediator: IMediator;
+		var mediator: IMediator = null;
 		if ( view != null ) mediator = view.removeMediator( mediatorName );			
 		return mediator;
 	}

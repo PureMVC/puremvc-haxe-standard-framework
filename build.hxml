@@ -6,7 +6,6 @@
 -cp src
 -swf bin/puremvc_fl9.swf
 -swf-version 9
---override
 org.puremvc.haxe.ImportAll
 
 # build flash8 library
@@ -14,7 +13,6 @@ org.puremvc.haxe.ImportAll
 -cp src
 -swf bin/puremvc_fl8.swf
 -swf-version 8
---override
 org.puremvc.haxe.ImportAll
 
 # build flash7 library
@@ -22,7 +20,6 @@ org.puremvc.haxe.ImportAll
 -cp src
 -swf bin/puremvc_fl7.swf
 -swf-version 7
---override
 org.puremvc.haxe.ImportAll
 
 # build flash6 library
@@ -30,14 +27,12 @@ org.puremvc.haxe.ImportAll
 -cp src
 -swf bin/puremvc_fl6.swf
 -swf-version 6
---override
 org.puremvc.haxe.ImportAll
 
 # build javascript library
 --next
 -cp src
 -js bin/puremvc.js
---override
 org.puremvc.haxe.ImportAll
 
 # build extern classes from flash9 binaries
@@ -53,6 +48,5 @@ org.puremvc.haxe.ImportAll
 -cp src
 -neko docs/all.n
 -xml docs/puremvc_docs.xml
---override
 org.puremvc.haxe.ImportAll
 

@@ -88,6 +88,6 @@ class Observer implements IObserver
 	 */
 	 public function compareNotifyContext( object: Dynamic ): Bool
 	 {
-	 	return object === this.context;
+	 	return object == this.context;
 	 }		
 }

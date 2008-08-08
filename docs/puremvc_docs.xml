@@ -288,13 +288,7 @@
  ]]></haxe_doc>
 	</class>
 	<class path="Reflect" params="" file="/usr/local/lib/haxe/std/Reflect.hx">
-		<empty public="1" line="35" static="1">
-			<f a=""><a/></f>
-			<haxe_doc>
-		Creates an empty object.
-	</haxe_doc>
-		</empty>
-		<hasField public="1" line="53" static="1">
+		<hasField public="1" line="35" static="1">
 			<f a="o:field">
 				<d/>
 				<c path="String"/>
@@ -304,7 +298,7 @@
 		Tells if an object has a field set. This doesn't take into account the object prototype (class methods).
 	</haxe_doc>
 		</hasField>
-		<field public="1" line="76" static="1">
+		<field public="1" line="65" static="1">
 			<f a="o:field">
 				<d/>
 				<c path="String"/>
@@ -314,7 +308,7 @@
 		Returns the field of an object, or null if [o] is not an object or doesn't have this field.
 	</haxe_doc>
 		</field>
-		<setField public="1" line="101" static="1">
+		<setField public="1" line="148" static="1">
 			<f a="o:field:value">
 				<d/>
 				<c path="String"/>
@@ -325,7 +319,7 @@
 		Set an object field value.
 	</haxe_doc>
 		</setField>
-		<callMethod public="1" line="117" static="1">
+		<callMethod public="1" line="164" static="1">
 			<f a="o:func:args">
 				<d/>
 				<d/>
@@ -336,7 +330,7 @@
 		Call a method with the given object and arguments.
 	</haxe_doc>
 		</callMethod>
-		<fields public="1" line="135" static="1">
+		<fields public="1" line="188" static="1">
 			<f a="o">
 				<d/>
 				<c path="Array"><c path="String"/></c>
@@ -345,7 +339,7 @@
 		Returns the list of fields of an object, excluding its prototype (class methods).
 	</haxe_doc>
 		</fields>
-		<isFunction public="1" line="201" static="1">
+		<isFunction public="1" line="259" static="1">
 			<f a="f">
 				<d/>
 				<e path="Bool"/>
@@ -354,7 +348,7 @@
 		Tells if a value is a function or not.
 	</haxe_doc>
 		</isFunction>
-		<compare public="1" params="T" line="219" static="1">
+		<compare public="1" params="T" line="278" static="1">
 			<f a="a:b">
 				<c path="compare.T"/>
 				<c path="compare.T"/>
@@ -364,7 +358,7 @@
 		Generic comparison function, does not work for methods, see [compareMethods]
 	</haxe_doc>
 		</compare>
-		<compareMethods public="1" line="227" static="1">
+		<compareMethods public="1" line="290" static="1">
 			<f a="f1:f2">
 				<d/>
 				<d/>
@@ -375,7 +369,7 @@
 		Does not work on Neko platform.
 	</haxe_doc>
 		</compareMethods>
-		<isObject public="1" line="249" static="1">
+		<isObject public="1" line="318" static="1">
 			<f a="v">
 				<d/>
 				<e path="Bool"/>
@@ -385,7 +379,7 @@
 
 	</haxe_doc>
 		</isObject>
-		<deleteField public="1" line="280" static="1">
+		<deleteField public="1" line="358" static="1">
 			<f a="o:f">
 				<d/>
 				<c path="String"/>
@@ -395,7 +389,7 @@
 		Delete an object field.
 	</haxe_doc>
 		</deleteField>
-		<copy public="1" params="T" line="309" static="1">
+		<copy public="1" params="T" line="385" static="1">
 			<f a="o">
 				<c path="copy.T"/>
 				<c path="copy.T"/>
@@ -404,7 +398,7 @@
 		Make a copy of the fields of an object.
 	</haxe_doc>
 		</copy>
-		<makeVarArgs public="1" line="324" static="1">
+		<makeVarArgs public="1" line="403" static="1">
 			<f a="f">
 				<f a="">
 					<c path="Array"><d/></c>
@@ -1261,29 +1255,7 @@
 		file path.
 	</haxe_doc>
 		</localUnserialize>
-		<makeString public="1" line="98" static="1">
-			<f a="size">
-				<c path="Int"/>
-				<c path="String"/>
-			</f>
-			<haxe_doc>
-		Creates a raw string of [size] bytes.
-	</haxe_doc>
-		</makeString>
-		<copyBytes public="1" line="105" static="1">
-			<f a="dst:dst_pos:src:src_pos:len">
-				<c path="String"/>
-				<c path="Int"/>
-				<c path="String"/>
-				<c path="Int"/>
-				<c path="Int"/>
-				<e path="Void"/>
-			</f>
-			<haxe_doc>
-		Copy bytes between two strings.
-	</haxe_doc>
-		</copyBytes>
-		<nekoToHaxe public="1" line="112" static="1">
+		<nekoToHaxe public="1" line="98" static="1">
 			<f a="v">
 				<d/>
 				<d/>
@@ -1292,7 +1264,7 @@
 		Converts a Neko value to its haXe equivalent. Used for wrapping String and Arrays raw values into haXe Objects.
 	</haxe_doc>
 		</nekoToHaxe>
-		<haxeToNeko public="1" line="144" static="1">
+		<haxeToNeko public="1" line="130" static="1">
 			<f a="v">
 				<d/>
 				<d/>
@@ -1301,12 +1273,30 @@
 		Converts a Neko value to its haXe equivalent. Used to unwrap String and Arrays Objects into raw Neko values.
 	</haxe_doc>
 		</haxeToNeko>
-		<getClasses public="1" line="179" static="1">
+		<getClasses public="1" line="165" static="1">
 			<f a=""><d/></f>
 			<haxe_doc>
 		Returns an object containing all compiled packages and classes.
 	</haxe_doc>
 		</getClasses>
+		<stringReference public="1" line="172" static="1">
+			<f a="b">
+				<c path="haxe.io.Bytes"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a string referencing the data contains in bytes.
+	</haxe_doc>
+		</stringReference>
+		<bytesReference public="1" line="179" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="haxe.io.Bytes"/>
+			</f>
+			<haxe_doc>
+		Returns bytes referencing the content of a string.
+	</haxe_doc>
+		</bytesReference>
 		<__serialize line="183" static="1"><f a="">
 	<d/>
 	<c path="String"/>
@@ -1329,12 +1319,12 @@
 </f></__unserialize>
 	</class>
 	<class path="StringBuf" params="" file="/usr/local/lib/haxe/std/StringBuf.hx">
-		<__make line="109" static="1"><d/></__make>
-		<__add line="110" static="1"><d/></__add>
-		<__add_char line="111" static="1"><d/></__add_char>
-		<__add_sub line="112" static="1"><d/></__add_sub>
-		<__string line="113" static="1"><d/></__string>
-		<add public="1" line="49">
+		<__make line="98" static="1"><d/></__make>
+		<__add line="99" static="1"><d/></__add>
+		<__add_char line="100" static="1"><d/></__add_char>
+		<__add_sub line="101" static="1"><d/></__add_sub>
+		<__string line="102" static="1"><d/></__string>
+		<add public="1" line="46">
 			<f a="?x">
 				<d/>
 				<e path="Void"/>
@@ -1343,7 +1333,7 @@
 		Adds the representation of any value to the string buffer.
 	</haxe_doc>
 		</add>
-		<addSub public="1" line="61">
+		<addSub public="1" line="57">
 			<f a="s:pos:?len">
 				<c path="String"/>
 				<c path="Int"/>
@@ -1354,7 +1344,7 @@
 		Adds a part of a string to the string buffer.
 	</haxe_doc>
 		</addSub>
-		<addChar public="1" line="80">
+		<addChar public="1" line="73">
 			<f a="c">
 				<c path="Int"/>
 				<e path="Void"/>
@@ -1363,7 +1353,7 @@
 		Adds a character to the string buffer.
 	</haxe_doc>
 		</addChar>
-		<toString public="1" line="95">
+		<toString public="1" line="87">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>
 		Returns the content of the string buffer.
@@ -1702,15 +1692,15 @@
 	 * Get the [IMediator] instance name
 	 </haxe_doc>
 		</getMediatorName>
-		<getViewComponent public="1" params="T">
-			<f a=""><c path="getViewComponent.T"/></f>
+		<getViewComponent public="1">
+			<f a=""><d/></f>
 			<haxe_doc>
 	 * Get the [IMediator]'s view component.
 	 </haxe_doc>
 		</getViewComponent>
-		<setViewComponent public="1" params="T">
+		<setViewComponent public="1">
 			<f a="viewComponent">
-				<c path="setViewComponent.T"/>
+				<d/>
 				<e path="Void"/>
 			</f>
 			<haxe_doc>
@@ -1773,6 +1763,59 @@
  * and register it as an Observer for each [INotification] name returned by 
  * [listNotificationInterests].</p>
  ]]></haxe_doc>
+	</class>
+	<class path="haxe.io.Bytes" params="" file="/usr/local/lib/haxe/std/haxe/io/Bytes.hx">
+		<alloc public="1" line="182" static="1"><f a="length">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></alloc>
+		<ofString public="1" line="197" static="1"><f a="s">
+	<c path="String"/>
+	<c path="haxe.io.Bytes"/>
+</f></ofString>
+		<ofData public="1" line="232" static="1"><f a="b">
+	<t path="haxe.io.BytesData"/>
+	<c path="haxe.io.Bytes"/>
+</f></ofData>
+		<length public="1" set="null"><c path="Int"/></length>
+		<b><t path="haxe.io.BytesData"/></b>
+		<get public="1" line="37"><f a="pos">
+	<c path="Int"/>
+	<c path="Int"/>
+</f></get>
+		<set public="1" line="47"><f a="pos:v">
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></set>
+		<blit public="1" line="57"><f a="pos:src:srcpos:len">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></blit>
+		<sub public="1" line="82"><f a="pos:len">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></sub>
+		<compare public="1" line="98"><f a="other">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+</f></compare>
+		<readString public="1" line="128"><f a="pos:len">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="String"/>
+</f></readString>
+		<toString public="1" line="165"><f a=""><c path="String"/></f></toString>
+		<getData public="1" line="178"><f a=""><t path="haxe.io.BytesData"/></f></getData>
+		<new line="32"><f a="length:b">
+	<c path="Int"/>
+	<t path="haxe.io.BytesData"/>
+	<e path="Void"/>
+</f></new>
 	</class>
 	<class path="org.puremvc.haxe.interfaces.IProxy" params="" file="src/org/puremvc/haxe/interfaces/IProxy.hx" interface="1">
 		<getProxyName public="1">
@@ -2072,6 +2115,18 @@
 	Integer iterator. Used for interval implementation.
 </haxe_doc>
 	</class>
+	<enum path="haxe.io.Error" params="" file="/usr/local/lib/haxe/std/haxe/io/Error.hx">
+		<Overflow><haxe_doc> An integer value is outside its allowed range </haxe_doc></Overflow>
+		<OutsideBounds><haxe_doc> An operation on Bytes is outside of its valid range </haxe_doc></OutsideBounds>
+		<Custom a="e">
+			<d/>
+			<haxe_doc> Other errors </haxe_doc>
+		</Custom>
+		<Blocked><haxe_doc> The IO is set into nonblocking mode and some data cannot be read or written </haxe_doc></Blocked>
+		<haxe_doc>
+	The possible IO errors that can occur
+</haxe_doc>
+	</enum>
 	<class path="org.puremvc.haxe.core.Model" params="" file="src/org/puremvc/haxe/core/Model.hx">
 		<implements path="org.puremvc.haxe.interfaces.IModel"/>
 		<getInstance public="1" line="54" static="1">
@@ -2152,6 +2207,74 @@
  * actors.</p>
  ]]></haxe_doc>
 	</class>
+	<class path="Float" params="" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
+	The standard Float type, this is a double-precision IEEE 64bit float.
+</haxe_doc></class>
+	<class path="Int" params="" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1">
+		<extends path="Float"/>
+		<haxe_doc>
+	The standard Int type. Its precision depends on the platform.
+</haxe_doc>
+	</class>
+	<enum path="Bool" params="" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<true/>
+		<false/>
+		<haxe_doc>
+	The standard Boolean type is represented as an enum with two choices.
+</haxe_doc>
+	</enum>
+	<class path="Dynamic" params="T" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
+	Dynamic is an internal compiler type which has special behavior.
+	See the haXe language reference for more informations.
+</haxe_doc></class>
+	<class path="Class" params="T" file="/usr/local/lib/haxe/std/Class.hx" extern="1"><haxe_doc>
+	An abstract type that represents a Class.
+	See [Type] for the haXe Reflection API.
+</haxe_doc></class>
+	<enum path="Void" params="" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes"><haxe_doc>
+	The standard Void type. Only [null] values can be of the type [Void].
+</haxe_doc></enum>
+	<class path="neko.Boot" params="" file="/usr/local/lib/haxe/std/neko/Boot.hx">
+		<__tmp_str line="29" static="1"><f a=""><c path="Int"/></f></__tmp_str>
+		<__enum_str line="33" static="1"><f a="e">
+	<d/>
+	<c path="Int"/>
+</f></__enum_str>
+		<__interfLoop line="55" static="1"><f a="cc:cl">
+	<d/>
+	<d/>
+	<e path="Bool"/>
+</f></__interfLoop>
+		<__instanceof line="70" static="1"><f a="o:cl">
+	<a>
+		<__name__><unknown/></__name__>
+		<__enum__><t path="#Dynamic"/></__enum__>
+		<__ename__><unknown/></__ename__>
+		<__class__><unknown/></__class__>
+	</a>
+	<t path="#Dynamic"/>
+	<e path="Bool"/>
+</f></__instanceof>
+		<__serialize line="88" static="1"><f a="o">
+	<a>
+		<__enum__><a><__ename__><a><length><c path="Int"/></length></a></__ename__></a></__enum__>
+		<__class__><a><__name__><a><length><c path="Int"/></length></a></__name__></a></__class__>
+	</a>
+	<c path="Array"><unknown/></c>
+</f></__serialize>
+		<__tagserialize line="108" static="1"><f a="o">
+	<a>
+		<tag><unknown/></tag>
+		<__enum__><a><__ename__><a><length><c path="Int"/></length></a></__ename__></a></__enum__>
+	</a>
+	<c path="Array"><unknown/></c>
+</f></__tagserialize>
+		<__unserialize line="117" static="1"><f a="v">
+	<c path="Array"><unknown/></c>
+	<unknown/>
+</f></__unserialize>
+		<__init line="140" static="1"><f a=""><e path="Void"/></f></__init>
+	</class>
 	<class path="Std" params="" file="/usr/local/lib/haxe/std/Std.hx">
 		<is public="1" line="34" static="1">
 			<f a="v:t">
@@ -2163,7 +2286,7 @@
 		Tells if a value v is of the type t.
 	</haxe_doc>
 		</is>
-		<string public="1" line="50" static="1">
+		<string public="1" line="52" static="1">
 			<f a="s">
 				<d/>
 				<c path="String"/>
@@ -2172,7 +2295,7 @@
 		Convert any value to a String
 	</haxe_doc>
 		</string>
-		<int public="1" line="66" static="1">
+		<int public="1" line="70" static="1">
 			<f a="x">
 				<c path="Float"/>
 				<c path="Int"/>
@@ -2181,16 +2304,7 @@
 		Convert a Float to an Int, rounded down.
 	</haxe_doc>
 		</int>
-		<bool public="1" line="78" static="1">
-			<f a="x">
-				<d/>
-				<e path="Bool"/>
-			</f>
-			<haxe_doc>
-		Convert any value to a Bool. Only 0, null and false are false, other values are true.
-	</haxe_doc>
-		</bool>
-		<parseInt public="1" line="85" static="1">
+		<parseInt public="1" line="84" static="1">
 			<f a="x">
 				<c path="String"/>
 				<t path="Null"><c path="Int"/></t>
@@ -2199,7 +2313,7 @@
 		Convert a String to an Int, parsing different possible representations. Returns [null] if could not be parsed.
 	</haxe_doc>
 		</parseInt>
-		<parseFloat public="1" line="120" static="1">
+		<parseFloat public="1" line="122" static="1">
 			<f a="x">
 				<c path="String"/>
 				<c path="Float"/>
@@ -2208,25 +2322,7 @@
 		Convert a String to a Float, parsing different possible reprensations.
 	</haxe_doc>
 		</parseFloat>
-		<chr public="1" line="138" static="1">
-			<f a="x">
-				<c path="Int"/>
-				<c path="String"/>
-			</f>
-			<haxe_doc>
-		Convert a character code into the corresponding single-char String.
-	</haxe_doc>
-		</chr>
-		<ord public="1" line="145" static="1">
-			<f a="x">
-				<c path="String"/>
-				<t path="Null"><c path="Int"/></t>
-			</f>
-			<haxe_doc>
-		Return the character code of the first character of the String, or null if the String is empty.
-	</haxe_doc>
-		</ord>
-		<random public="1" line="172" static="1">
+		<random public="1" line="142" static="1">
 			<f a="x">
 				<c path="Int"/>
 				<c path="Int"/>
@@ -2235,29 +2331,8 @@
 		Return a random integer between 0 included and x excluded.
 	</haxe_doc>
 		</random>
-		<resource public="1" line="190" static="1">
-			<f a="name">
-				<c path="String"/>
-				<c path="String"/>
-			</f>
-			<haxe_doc>
-		Return the given resource stored using -res, or null if not defined.
-	</haxe_doc>
-		</resource>
 		<haxe_doc>
 	The Std class provides standard methods for manipulating basic types.
-</haxe_doc>
-	</class>
-	<enum path="Void" params="" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes"><haxe_doc>
-	The standard Void type. Only [null] values can be of the type [Void].
-</haxe_doc></enum>
-	<class path="Float" params="" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
-	The standard Float type, this is a double-precision IEEE 64bit float.
-</haxe_doc></class>
-	<class path="Int" params="" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1">
-		<extends path="Float"/>
-		<haxe_doc>
-	The standard Int type. Its precision depends on the platform.
 </haxe_doc>
 	</class>
 	<typedef path="Null" params="T" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes">
@@ -2269,17 +2344,6 @@
 	can't.
 </haxe_doc>
 	</typedef>
-	<enum path="Bool" params="" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes">
-		<true/>
-		<false/>
-		<haxe_doc>
-	The standard Boolean type is represented as an enum with two choices.
-</haxe_doc>
-	</enum>
-	<enum path="Dynamic" params="T" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes"><haxe_doc>
-	Dynamic is an internal compiler type which has special behavior.
-	See the haXe language reference for more informations.
-</haxe_doc></enum>
 	<typedef path="Iterator" params="T" file="/usr/local/lib/haxe/std/StdTypes.hx" module="StdTypes">
 		<a>
 			<next><f a=""><c path="Iterator.T"/></f></next>
@@ -2447,7 +2511,7 @@
 		The number of elements in this list.
 	</haxe_doc>
 		</length>
-		<add public="1" line="51">
+		<add public="1" line="56">
 			<f a="item">
 				<c path="List.T"/>
 				<e path="Void"/>
@@ -2456,7 +2520,7 @@
 		Add an element at the end of the list.
 	</haxe_doc>
 		</add>
-		<push public="1" line="68">
+		<push public="1" line="76">
 			<f a="item">
 				<c path="List.T"/>
 				<e path="Void"/>
@@ -2465,21 +2529,21 @@
 		Push an element at the beginning of the list.
 	</haxe_doc>
 		</push>
-		<first public="1" line="84">
+		<first public="1" line="100">
 			<f a=""><c path="List.T"/></f>
 			<haxe_doc>
 		Returns the first element of the list, or null
 		if the list is empty.
 	</haxe_doc>
 		</first>
-		<last public="1" line="92">
+		<last public="1" line="108">
 			<f a=""><c path="List.T"/></f>
 			<haxe_doc>
 		Returns the last element of the list, or null
 		if the list is empty.
 	</haxe_doc>
 		</last>
-		<pop public="1" line="102">
+		<pop public="1" line="118">
 			<f a=""><c path="List.T"/></f>
 			<haxe_doc>
 		Removes the first element of the list and
@@ -2487,19 +2551,19 @@
 		list is empty.
 	</haxe_doc>
 		</pop>
-		<isEmpty public="1" line="116">
+		<isEmpty public="1" line="132">
 			<f a=""><e path="Bool"/></f>
 			<haxe_doc>
 		Tells if a list is empty.
 	</haxe_doc>
 		</isEmpty>
-		<clear public="1" line="123">
+		<clear public="1" line="139">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
 		Makes the list empty.
 	</haxe_doc>
 		</clear>
-		<remove public="1" line="132">
+		<remove public="1" line="148">
 			<f a="v">
 				<c path="List.T"/>
 				<e path="Bool"/>
@@ -2509,19 +2573,19 @@
 		Returns [true] if an element was removed, [false] otherwise.
 	</haxe_doc>
 		</remove>
-		<iterator public="1" line="155">
+		<iterator public="1" line="190">
 			<f a=""><t path="Iterator"><c path="List.T"/></t></f>
 			<haxe_doc>
 		Returns an iterator on the elements of the list.
 	</haxe_doc>
 		</iterator>
-		<toString public="1" line="176">
+		<toString public="1" line="211">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>
 		Returns a displayable representation of the String.
 	</haxe_doc>
 		</toString>
-		<join public="1" line="196">
+		<join public="1" line="231">
 			<f a="sep">
 				<c path="String"/>
 				<c path="String"/>
@@ -2530,7 +2594,7 @@
 		Join the element of the list by using the separator [sep].
 	</haxe_doc>
 		</join>
-		<filter public="1" line="215">
+		<filter public="1" line="250">
 			<f a="f">
 				<f a="">
 					<c path="List.T"/>
@@ -2543,7 +2607,7 @@
 		will contain all elements [x] for which [f(x) = true].
 	</haxe_doc>
 		</filter>
-		<map public="1" params="X" line="231">
+		<map public="1" params="X" line="266">
 			<f a="f">
 				<f a="">
 					<c path="List.T"/>
@@ -2556,7 +2620,7 @@
 		by the function [f].
 	</haxe_doc>
 		</map>
-		<new public="1" line="44">
+		<new public="1" line="49">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
 		Creates a new empty list.
@@ -2567,45 +2631,6 @@
 	that are chained together. It's optimized so that adding or removing an
 	element doesn't imply to copy the whole array content everytime.
 </haxe_doc>
-	</class>
-	<class path="neko.Boot" params="" file="/usr/local/lib/haxe/std/neko/Boot.hx">
-		<__tmp_str line="29" static="1"><f a=""><c path="Int"/></f></__tmp_str>
-		<__enum_str line="33" static="1"><f a="e">
-	<d/>
-	<c path="Int"/>
-</f></__enum_str>
-		<__interfLoop line="55" static="1"><f a="cc:cl">
-	<d/>
-	<d/>
-	<e path="Bool"/>
-</f></__interfLoop>
-		<__instanceof line="70" static="1"><f a="o:cl">
-	<a>
-		<__enum__><t path="#Dynamic"><unknown/></t></__enum__>
-		<__class__><unknown/></__class__>
-	</a>
-	<t path="#Dynamic"><unknown/></t>
-	<e path="Bool"/>
-</f></__instanceof>
-		<__serialize line="88" static="1"><f a="o">
-	<a>
-		<__enum__><a><__ename__><a><length><c path="Int"/></length></a></__ename__></a></__enum__>
-		<__class__><a><__name__><a><length><c path="Int"/></length></a></__name__></a></__class__>
-	</a>
-	<c path="Array"><unknown/></c>
-</f></__serialize>
-		<__tagserialize line="108" static="1"><f a="o">
-	<a>
-		<tag><unknown/></tag>
-		<__enum__><a><__ename__><a><length><c path="Int"/></length></a></__ename__></a></__enum__>
-	</a>
-	<c path="Array"><unknown/></c>
-</f></__tagserialize>
-		<__unserialize line="117" static="1"><f a="v">
-	<c path="Array"><unknown/></c>
-	<unknown/>
-</f></__unserialize>
-		<__init line="140" static="1"><f a=""><e path="Void"/></f></__init>
 	</class>
 	<class path="Enum" params="" file="/usr/local/lib/haxe/std/Type.hx" module="Type" extern="1"><haxe_doc>
 	An abstract type that represents an Enum.
@@ -2627,25 +2652,7 @@
 </haxe_doc>
 	</enum>
 	<class path="Type" params="" file="/usr/local/lib/haxe/std/Type.hx">
-		<toEnum public="1" line="34" static="1">
-			<f a="t">
-				<d/>
-				<c path="Enum"/>
-			</f>
-			<haxe_doc>
-		Converts a value to an Enum or returns [null] if the value is not an Enum.
-	</haxe_doc>
-		</toEnum>
-		<toClass public="1" line="52" static="1">
-			<f a="t">
-				<d/>
-				<c path="Class"><d/></c>
-			</f>
-			<haxe_doc>
-		Converts a value to a Class or returns [null] if the value is not a Class.
-	</haxe_doc>
-		</toClass>
-		<getClass public="1" params="T" line="70" static="1">
+		<getClass public="1" params="T" line="34" static="1">
 			<f a="o">
 				<c path="getClass.T"/>
 				<c path="Class"><c path="getClass.T"/></c>
@@ -2654,7 +2661,7 @@
 		Returns the class of a value or [null] if this value is not a Class instance.
 	</haxe_doc>
 		</getClass>
-		<getEnum public="1" line="105" static="1">
+		<getEnum public="1" line="85" static="1">
 			<f a="o">
 				<d/>
 				<c path="Enum"/>
@@ -2663,7 +2670,7 @@
 		Returns the enum of a value or [null] if this value is not an Enum instance.
 	</haxe_doc>
 		</getEnum>
-		<getSuperClass public="1" line="135" static="1">
+		<getSuperClass public="1" line="121" static="1">
 			<f a="c">
 				<c path="Class"><d/></c>
 				<c path="Class"><d/></c>
@@ -2672,7 +2679,7 @@
 		Returns the super-class of a class, or null if no super class.
 	</haxe_doc>
 		</getSuperClass>
-		<getClassName public="1" line="150" static="1">
+		<getClassName public="1" line="142" static="1">
 			<f a="c">
 				<c path="Class"><d/></c>
 				<c path="String"/>
@@ -2690,7 +2697,7 @@
 		Returns the complete name of an enum.
 	</haxe_doc>
 		</getEnumName>
-		<resolveClass public="1" line="179" static="1">
+		<resolveClass public="1" line="180" static="1">
 			<f a="name">
 				<c path="String"/>
 				<c path="Class"><d/></c>
@@ -2700,7 +2707,7 @@
 		to be accessible.
 	</haxe_doc>
 		</resolveClass>
-		<resolveEnum public="1" line="221" static="1">
+		<resolveEnum public="1" line="234" static="1">
 			<f a="name">
 				<c path="String"/>
 				<c path="Enum"/>
@@ -2710,7 +2717,7 @@
 		to be accessible.
 	</haxe_doc>
 		</resolveEnum>
-		<createInstance public="1" params="T" line="261" static="1">
+		<createInstance public="1" params="T" line="282" static="1">
 			<f a="cl:args">
 				<c path="Class"><c path="createInstance.T"/></c>
 				<c path="Array"><d/></c>
@@ -2720,7 +2727,7 @@
 		Creates an instance of the given class with the list of constructor arguments.
 	</haxe_doc>
 		</createInstance>
-		<createEmptyInstance public="1" params="T" line="289" static="1">
+		<createEmptyInstance public="1" params="T" line="323" static="1">
 			<f a="cl">
 				<c path="Class"><c path="createEmptyInstance.T"/></c>
 				<c path="createEmptyInstance.T"/>
@@ -2730,7 +2737,18 @@
 		This enables you to create an instance without any side-effect.
 	</haxe_doc>
 		</createEmptyInstance>
-		<getInstanceFields public="1" line="334" static="1">
+		<createEnum public="1" line="376" static="1">
+			<f a="e:constr:?params">
+				<c path="Enum"/>
+				<c path="String"/>
+				<c path="Array"><d/></c>
+				<d/>
+			</f>
+			<haxe_doc>
+		Create an instance of an enum by using a constructor name and parameters.
+	</haxe_doc>
+		</createEnum>
+		<getInstanceFields public="1" line="407" static="1">
 			<f a="c">
 				<c path="Class"><d/></c>
 				<c path="Array"><c path="String"/></c>
@@ -2739,7 +2757,7 @@
 		Returns the list of instance fields.
 	</haxe_doc>
 		</getInstanceFields>
-		<getClassFields public="1" line="357" static="1">
+		<getClassFields public="1" line="448" static="1">
 			<f a="c">
 				<c path="Class"><d/></c>
 				<c path="Array"><c path="String"/></c>
@@ -2748,7 +2766,7 @@
 		Returns the list of a class static fields.
 	</haxe_doc>
 		</getClassFields>
-		<getEnumConstructs public="1" line="382" static="1">
+		<getEnumConstructs public="1" line="488" static="1">
 			<f a="e">
 				<c path="Enum"/>
 				<c path="Array"><c path="String"/></c>
@@ -2757,7 +2775,7 @@
 		Returns all the available constructor names for an enum.
 	</haxe_doc>
 		</getEnumConstructs>
-		<typeof public="1" line="389" static="1">
+		<typeof public="1" line="507" static="1">
 			<f a="v">
 				<d/>
 				<e path="ValueType"/>
@@ -2766,7 +2784,7 @@
 		Returns the runtime type of a value.
 	</haxe_doc>
 		</typeof>
-		<enumEq public="1" params="T" line="476" static="1">
+		<enumEq public="1" params="T" line="617" static="1">
 			<f a="a:b">
 				<c path="enumEq.T"/>
 				<c path="enumEq.T"/>
@@ -2776,7 +2794,7 @@
 		Recursively compare two enums constructors and parameters.
 	</haxe_doc>
 		</enumEq>
-		<enumConstructor public="1" line="515" static="1">
+		<enumConstructor public="1" line="671" static="1">
 			<f a="e">
 				<d/>
 				<c path="String"/>
@@ -2785,7 +2803,7 @@
 		Returns the constructor of an enum
 	</haxe_doc>
 		</enumConstructor>
-		<enumParameters public="1" line="528" static="1">
+		<enumParameters public="1" line="684" static="1">
 			<f a="e">
 				<d/>
 				<c path="Array"><d/></c>
@@ -2794,7 +2812,7 @@
 		Returns the parameters of an enum
 	</haxe_doc>
 		</enumParameters>
-		<enumIndex public="1" line="541" static="1">
+		<enumIndex public="1" line="702" static="1">
 			<f a="e">
 				<d/>
 				<c path="Int"/>
@@ -2808,10 +2826,6 @@
 	Classes and Enums at runtime.
 </haxe_doc>
 	</class>
-	<class path="Class" params="T" file="/usr/local/lib/haxe/std/Class.hx" extern="1"><haxe_doc>
-	An abstract type that represents a Class.
-	See [Type] for the haXe Reflection API.
-</haxe_doc></class>
 	<class path="org.puremvc.haxe.patterns.mediator.Mediator" params="" file="src/org/puremvc/haxe/patterns/mediator/Mediator.hx">
 		<extends path="org.puremvc.haxe.patterns.observer.Notifier"/>
 		<implements path="org.puremvc.haxe.interfaces.IMediator"/>
@@ -2895,6 +2909,21 @@
  * A base [IMediator] implementation. 
  </haxe_doc>
 	</class>
+	<class path="neko.NativeString" params="" file="/usr/local/lib/haxe/std/neko/NativeString.hx">
+		<ofString public="1" line="29" static="1"><f a="s">
+	<c path="String"/>
+	<c path="neko.NativeString"/>
+</f></ofString>
+		<toString public="1" line="33" static="1"><f a="s">
+	<c path="neko.NativeString"/>
+	<c path="String"/>
+</f></toString>
+		<length public="1" line="37" static="1"><f a="s">
+	<c path="neko.NativeString"/>
+	<c path="Int"/>
+</f></length>
+	</class>
+	<typedef path="haxe.io.BytesData" params="" file="/usr/local/lib/haxe/std/haxe/io/BytesData.hx"><c path="neko.NativeString"/></typedef>
 	<class path="org.puremvc.haxe.patterns.observer.Notification" params="" file="src/org/puremvc/haxe/patterns/observer/Notification.hx">
 		<implements path="org.puremvc.haxe.interfaces.INotification"/>
 		<getName public="1" line="52">
@@ -3054,7 +3083,8 @@
  ]]></haxe_doc>
 	</class>
 	<class path="Hash" params="T" file="/usr/local/lib/haxe/std/Hash.hx">
-		<set public="1" line="58">
+		<h><d/></h>
+		<set public="1" line="61">
 			<f a="key:value">
 				<c path="String"/>
 				<c path="Hash.T"/>
@@ -3064,7 +3094,7 @@
 		Set a value for the given key.
 	</haxe_doc>
 		</set>
-		<get public="1" line="72">
+		<get public="1" line="76">
 			<f a="key">
 				<c path="String"/>
 				<t path="Null"><c path="Hash.T"/></t>
@@ -3073,7 +3103,7 @@
 		Get a value for the given key.
 	</haxe_doc>
 		</get>
-		<exists public="1" line="88">
+		<exists public="1" line="96">
 			<f a="key">
 				<c path="String"/>
 				<e path="Bool"/>
@@ -3084,7 +3114,7 @@
 		a [null] value versus no value.
 	</haxe_doc>
 		</exists>
-		<remove public="1" line="114">
+		<remove public="1" line="125">
 			<f a="key">
 				<c path="String"/>
 				<e path="Bool"/>
@@ -3094,26 +3124,25 @@
 		there was such entry.
 	</haxe_doc>
 		</remove>
-		<keys public="1" line="139">
+		<keys public="1" line="153">
 			<f a=""><t path="Iterator"><c path="String"/></t></f>
 			<haxe_doc>
 		Returns an iterator of all keys in the hashtable.
 	</haxe_doc>
 		</keys>
-		<iterator public="1" line="162">
+		<iterator public="1" line="179">
 			<f a=""><t path="Iterator"><c path="Hash.T"/></t></f>
 			<haxe_doc>
 		Returns an iterator of all values in the hashtable.
 	</haxe_doc>
 		</iterator>
-		<toString public="1" line="196">
+		<toString public="1" line="216">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>
 		Returns an displayable representation of the hashtable content.
 	</haxe_doc>
 		</toString>
-		<h><d/></h>
-		<new public="1" line="36">
+		<new public="1" line="38">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>
 		Creates a new empty hashtable.

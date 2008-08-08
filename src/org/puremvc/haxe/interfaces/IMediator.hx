@@ -45,12 +45,12 @@ interface IMediator
 	/**
 	 * Get the [IMediator]'s view component.
 	 */
-	function getViewComponent<T>(): T;
+	function getViewComponent(): Dynamic;
 
 	/**
 	 * Set the [IMediator]'s view component.
 	 */
-	function setViewComponent<T>( viewComponent: T ): Void;
+	function setViewComponent( viewComponent: Dynamic ): Void;
 		
 	/**
 	 * List [INotification] interests.
