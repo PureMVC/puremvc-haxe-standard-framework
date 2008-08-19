@@ -84,7 +84,17 @@ class View implements IView
 	{
 		if( observerMap.exists( notification.getName() ) )
 		{
-			var iterator: Iterator<IObserver> = observerMap.get( notification.getName() ).iterator();
+			// Get a reference to the observers list for this notification name
+			var observers_ref: List<IObserver> = observerMap.get( notification.getName() );
+
+			// Copy observers from reference array to working array, 
+			// since the reference array may change during the notification loop
+			var observers: List<IObserver> = new List();
+			var iterator_ref: Iterator<IObserver> = observers_ref.iterator();
+			for ( observer in iterator_ref )
+				observers.add( observer );
+			
+			var iterator: Iterator<IObserver> = observers.iterator();
 			for ( observer in iterator )
 				observer.notifyObserver( notification );
 		}
@@ -132,6 +142,9 @@ class View implements IView
 	 */
 	public function registerMediator( mediator: IMediator ): Void
 	{
+		// do not allow re-registration (you must to removeMediator fist)
+		if ( mediatorMap.exists( mediator.getMediatorName() ) ) return;
+
 		// Register the Mediator for retrieval by name
 		mediatorMap.set( mediator.getMediatorName(), mediator );
 		

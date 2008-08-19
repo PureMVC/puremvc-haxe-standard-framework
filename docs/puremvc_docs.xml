@@ -205,7 +205,7 @@
 	 * the order in which they were registered.</p>
 	 ]]></haxe_doc>
 		</notifyObservers>
-		<removeObserver public="1" line="96">
+		<removeObserver public="1" line="106">
 			<f a="notificationName:notifyContext">
 				<c path="String"/>
 				<d/>
@@ -215,7 +215,7 @@
  	* Remove the observer for a given notifyContext from an observer list for a given Notification name.
  	</haxe_doc>
 		</removeObserver>
-		<registerMediator public="1" line="133">
+		<registerMediator public="1" line="143">
 			<f a="mediator">
 				<c path="org.puremvc.haxe.interfaces.IMediator"/>
 				<e path="Void"/>
@@ -233,7 +233,7 @@
 	 * [IMediator] is interested in.</p>
 	 ]]></haxe_doc>
 		</registerMediator>
-		<retrieveMediator public="1" line="156">
+		<retrieveMediator public="1" line="169">
 			<f a="mediatorName">
 				<c path="String"/>
 				<c path="org.puremvc.haxe.interfaces.IMediator"/>
@@ -242,7 +242,7 @@
 	 * Retrieve an [IMediator] from the [View].
 	 </haxe_doc>
 		</retrieveMediator>
-		<removeMediator public="1" line="164">
+		<removeMediator public="1" line="177">
 			<f a="mediatorName">
 				<c path="String"/>
 				<c path="org.puremvc.haxe.interfaces.IMediator"/>
@@ -251,7 +251,7 @@
  	* Remove an [IMediator] from the [View].
  	</haxe_doc>
 		</removeMediator>
-		<hasMediator public="1" line="193">
+		<hasMediator public="1" line="206">
 			<f a="mediatorName">
 				<c path="String"/>
 				<e path="Bool"/>

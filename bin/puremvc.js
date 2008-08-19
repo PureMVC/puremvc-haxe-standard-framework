@@ -44,15 +44,23 @@ org.puremvc.haxe.core.View.prototype.initializeView = function() {
 org.puremvc.haxe.core.View.prototype.mediatorMap = null;
 org.puremvc.haxe.core.View.prototype.notifyObservers = function(notification) {
 	if(this.observerMap.exists(notification.getName())) {
-		var iterator = this.observerMap.get(notification.getName()).iterator();
-		{ var $it0 = iterator;
+		var observers_ref = this.observerMap.get(notification.getName());
+		var observers = new List();
+		var iterator_ref = observers_ref.iterator();
+		{ var $it0 = iterator_ref;
 		while( $it0.hasNext() ) { var observer = $it0.next();
+		observers.add(observer);
+		}}
+		var iterator = observers.iterator();
+		{ var $it1 = iterator;
+		while( $it1.hasNext() ) { var observer = $it1.next();
 		observer.notifyObserver(notification);
 		}}
 	}
 }
 org.puremvc.haxe.core.View.prototype.observerMap = null;
 org.puremvc.haxe.core.View.prototype.registerMediator = function(mediator) {
+	if(this.mediatorMap.exists(mediator.getMediatorName())) return;
 	this.mediatorMap.set(mediator.getMediatorName(),mediator);
 	var interests = mediator.listNotificationInterests();
 	if(interests.length > 0) {
@@ -89,8 +97,8 @@ org.puremvc.haxe.core.View.prototype.removeMediator = function(mediatorName) {
 }
 org.puremvc.haxe.core.View.prototype.removeObserver = function(notificationName,notifyContext) {
 	var observers = this.observerMap.get(notificationName);
-	{ var $it1 = observers.iterator();
-	while( $it1.hasNext() ) { var observer = $it1.next();
+	{ var $it2 = observers.iterator();
+	while( $it2.hasNext() ) { var observer = $it2.next();
 	{
 		if(observer.compareNotifyContext(notifyContext) == true) {
 			observers.remove(observer);
@@ -112,8 +120,8 @@ Reflect.__name__ = ["Reflect"];
 Reflect.hasField = function(o,field) {
 	if(o.hasOwnProperty != null) return o.hasOwnProperty(field);
 	var arr = Reflect.fields(o);
-	{ var $it2 = arr.iterator();
-	while( $it2.hasNext() ) { var t = $it2.next();
+	{ var $it3 = arr.iterator();
+	while( $it3.hasNext() ) { var t = $it3.next();
 	if(t == field) return true;
 	}}
 	return false;
@@ -123,9 +131,9 @@ Reflect.field = function(o,field) {
 	try {
 		v = o[field];
 	}
-	catch( $e3 ) {
+	catch( $e4 ) {
 		{
-			var e = $e3;
+			var e = $e4;
 			null;
 		}
 	}
@@ -152,9 +160,9 @@ Reflect.fields = function(o) {
 		try {
 			t = o.__proto__;
 		}
-		catch( $e4 ) {
+		catch( $e5 ) {
 			{
-				var e = $e4;
+				var e = $e5;
 				{
 					t = null;
 				}
@@ -744,9 +752,9 @@ Type.resolveClass = function(name) {
 	try {
 		cl = eval(name);
 	}
-	catch( $e5 ) {
+	catch( $e6 ) {
 		{
-			var e = $e5;
+			var e = $e6;
 			{
 				cl = null;
 			}
@@ -760,9 +768,9 @@ Type.resolveEnum = function(name) {
 	try {
 		e = eval(name);
 	}
-	catch( $e6 ) {
+	catch( $e7 ) {
 		{
-			var err = $e6;
+			var err = $e7;
 			{
 				e = null;
 			}
@@ -934,9 +942,9 @@ js.Boot.__string_rec = function(o,s) {
 		try {
 			tostr = o.toString;
 		}
-		catch( $e7 ) {
+		catch( $e8 ) {
 			{
-				var e = $e7;
+				var e = $e8;
 				{
 					return "???";
 				}
@@ -993,9 +1001,9 @@ js.Boot.__instanceof = function(o,cl) {
 		}
 		if(js.Boot.__interfLoop(o.__class__,cl)) return true;
 	}
-	catch( $e8 ) {
+	catch( $e9 ) {
 		{
-			var e = $e8;
+			var e = $e9;
 			{
 				if(cl == null) return false;
 			}
@@ -1176,9 +1184,9 @@ Hash.prototype.exists = function(key) {
 		key = "$" + key;
 		return this.hasOwnProperty.call(this.h,key);
 	}
-	catch( $e9 ) {
+	catch( $e10 ) {
 		{
-			var e = $e9;
+			var e = $e10;
 			{
 				
 				for(var i in this.h)
@@ -1221,8 +1229,8 @@ Hash.prototype.toString = function() {
 	var s = new StringBuf();
 	s.b += "{";
 	var it = this.keys();
-	{ var $it10 = it;
-	while( $it10.hasNext() ) { var i = $it10.next();
+	{ var $it11 = it;
+	while( $it11.hasNext() ) { var i = $it11.next();
 	{
 		s.b += i;
 		s.b += " => ";
