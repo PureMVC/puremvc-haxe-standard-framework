@@ -1,12 +1,10 @@
-PureMVC Port to haXe by Marco Secchi
-PureMVC - Copyright(c) 2007-2008 Futurescale, Inc., Some rights reserved.
+PureMVC Standard Framework for Haxe (Ported)
 --------------------------------------------------------------------------
 Release Date: 12/13/08
     Platform: haXe - JavaScript, Flash 6, 7, 8, 9, Neko VM
      Version: 1
     Revision: 2 
       Author: Marco Secchi <marco.secchi@puremvc.org>
-     License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
 1.2   Libraries now include version number. - CLH
 
