@@ -11,7 +11,13 @@ import org.puremvc.haxe.interfaces.IView;
 import org.puremvc.haxe.interfaces.IController;
 import org.puremvc.haxe.interfaces.INotification;
 import org.puremvc.haxe.patterns.observer.Observer;
-	
+
+#if haxe3
+import haxe.ds.StringMap;
+#else
+private typedef StringMap<T> = Hash<T>;
+#end
+
 /**
  * A Singleton [IController] implementation.
  * 
@@ -43,7 +49,7 @@ class Controller implements IController
 	private function new()
 	{
 		instance = this;
-		commandMap = new Hash();	
+		commandMap = new StringMap();
 		initializeController();	
 	}
 		
@@ -127,7 +133,7 @@ class Controller implements IController
 	private var view: IView;
 	
 	// Mapping of Notification names to Command Class references
-	private var commandMap: Hash<Class<ICommand>>;
+	private var commandMap: StringMap<Class<ICommand>>;
 
 	// Singleton instance
 	private static var instance: IController;
