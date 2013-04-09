@@ -7,7 +7,13 @@ package org.puremvc.haxe.core;
 
 import org.puremvc.haxe.interfaces.IModel;
 import org.puremvc.haxe.interfaces.IProxy;
-	
+
+#if haxe3
+import haxe.ds.StringMap;
+#else
+private typedef StringMap<T> = Hash<T>;
+#end
+
 /**
  * A Singleton [IModel] implementation.
  * 
@@ -34,7 +40,7 @@ class Model implements IModel
 	private function new()
 	{
 		instance = this;
-		proxyMap = new Hash();	
+		proxyMap = new StringMap();	
 		initializeModel();
 	}
 		
@@ -97,7 +103,7 @@ class Model implements IModel
 	}
 
 	// Mapping of proxyNames to [IProxy] instances
-	private var proxyMap: Hash<IProxy>;
+	private var proxyMap: StringMap<IProxy>;
 
 	// Singleton instance
 	private static var instance: IModel;

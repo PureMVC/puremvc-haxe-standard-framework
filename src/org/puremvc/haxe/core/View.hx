@@ -13,6 +13,12 @@ import org.puremvc.haxe.patterns.observer.Observer;
 
 //	import org.puremvc.haxe.patterns.observer.Observer;
 
+#if haxe3
+import haxe.ds.StringMap;
+#else
+private typedef StringMap<T> = Hash<T>;
+#end
+
 /**
  * A Singleton [IView] implementation.
  * 
@@ -39,8 +45,8 @@ class View implements IView
 	public function new()
 	{
 		instance = this;
-		mediatorMap = new Hash();
-		observerMap = new Hash();	
+		mediatorMap = new StringMap();
+		observerMap = new StringMap();	
 		initializeView();	
 	}
 	
@@ -209,10 +215,10 @@ class View implements IView
 	}
 					
 	// Mapping of Mediator names to Mediator instances
-	private var mediatorMap: Hash<IMediator>;
+	private var mediatorMap: StringMap<IMediator>;
 
 	// Mapping of Notification names to Observer lists
-	private var observerMap: Hash<List<IObserver>>;
+	private var observerMap: StringMap<List<IObserver>>;
 		
 	// Singleton instance
 	private static var instance	: IView;
