@@ -18,7 +18,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * [Undo](https://github.com/PureMVC/puremvc-haxe-util-undo/wiki)
 
 ## Status
-Production - [Version 1.2](https://github.com/PureMVC/puremvc-haxe-standard-framework/blob/master/VERSION)
+Production - [Version 1.3](https://github.com/PureMVC/puremvc-haxe-standard-framework/blob/master/VERSION)
 
 ## Platforms / Technologies
 * [Haxe](http://en.wikipedia.org/wiki/Haxe)
