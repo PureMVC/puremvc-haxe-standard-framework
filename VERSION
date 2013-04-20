@@ -1,11 +1,13 @@
 PureMVC Standard Framework for Haxe (Ported)
 --------------------------------------------------------------------------
-Release Date: 12/13/08
+Release Date: 4/20/13
     Platform: haXe - JavaScript, Flash 6, 7, 8, 9, Neko VM
      Version: 1
-    Revision: 2 
+    Revision: 3 
       Author: Marco Secchi <marco.secchi@puremvc.org>
 --------------------------------------------------------------------------
+1.3   Haxe 3 support added, docs updated by zjnue
+
 1.2   Libraries now include version number. - CLH
 
 1.1.1 Alignment to pureMVC (AS3) 2.0.4.
