@@ -1,7 +1,7 @@
 ## [PureMVC](http://puremvc.github.com/) Haxe Standard Framework
 PureMVC is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern. This is a Haxe port of the [AS3 reference implementation of the Standard Version](https://github.com/PureMVC/puremvc-as3-standard-framework/wiki). It does not support modular programming since it uses [Singleton](http://en.wikipedia.org/wiki/Singleton_pattern)s as Core actors rather than the [Multiton](http://en.wikipedia.org/wiki/Multiton)s used in the [MultiCore](https://github.com/PureMVC/puremvc-haxe-multicore-framework/wiki/) Version.
 
-* [API Docs](http://darkstar.puremvc.org/content_header.html?url=http://puremvc.org/pages/docs/Haxe/standard/docs/&desc=PureMVC%20API%20Docs:%20PureMVC%20Standard%20for%20Haxe)
+* [API Docs](http://puremvc.org/pages/docs/Haxe/standard/docs/)
 * [Unit Tests](https://github.com/PureMVC/puremvc-haxe-standard-unittests/wiki)
 * [Discussion](http://forums.puremvc.org/index.php?board=56.0)
 * [Overview Presentation](http://puremvc.tv/#P100)
